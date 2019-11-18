@@ -4,9 +4,11 @@ let noEscape = "Options? What options? You are playing a game desinged by me. Wh
 let normalShrek;
 let swampBack;
 let showingGame = false;
-
+let testAudio;
   
 function setup() {
+soundFormats("mp3")
+
 canvasWidth = windowWidth;
 canvasHeight = windowHeight;
 createCanvas(canvasWidth, canvasHeight)
@@ -20,14 +22,20 @@ class EnterText {
     this.w = w1;
     this.h = h1;
     this.maxLimit = maxLimit1;
+    this.textData = "text"
     
 
 
+  }
+  draw(){
+    rect(this.x, this.y, this.w, this.h)
+    text(textData, )
   }
 }
 function preload(){
   normalShrek = loadImage("assets/standingShrek.png")
   swampBack = loadImage("assets/phatswamp.jpg")
+  testAudio = loadSound("assets/sharpbreath.mp3");
 }
 
 function windowResized(){
@@ -39,7 +47,6 @@ function ui(){
   showingGame = false;
 }
 function draw() {
-  
   whichMenu();
 
 }
@@ -120,6 +127,8 @@ function showGame(){
   console.log("dudud")
   fill("white")
   text("What is your name? ", windowWidth/2, windowHeight/2);
+  nameBox = new EnterText(windowWidth/2, windowHeight/0.5, 150, 50, 1000);
+  nameBox.draw();
   
 
 }
@@ -142,3 +151,17 @@ function whichMenu() {
     showOptions();
   }
 }
+// function keyPressed(){
+//   if(keyCode = 83){
+//     cookieSave();
+//   }
+//   if(keyCode = 72){
+//     cookieLoad();
+//   }
+// }
+// function cookieSave(){
+//   document.cookie = "menu=" + menuState + "; ya";
+// }
+// function cookieLoad(){
+//   document.cookie.split(";")
+// }
