@@ -10,8 +10,6 @@ let yourName;
 let money;
   
 function setup() {
-soundFormats("mp3")
-
 canvasWidth = windowWidth;
 canvasHeight = windowHeight;
 createCanvas(canvasWidth, canvasHeight)
@@ -19,44 +17,13 @@ background(255)
 }
 
 
-class EnterText {
-  constructor(x1, y1, w1, h1, maxLimit1){
-    this.x = x1;
-    this.y = y1;
-    this.w = w1;
-    this.h = h1;
-    this.maxLimit = maxLimit1;
-    this.textData = "text"
-    
-  }
-  draw(){
-    push()
-    fill(255);
-    rect(this.x, this.y, this.w, this.h)
-    push()
-    fill(0);
-    text(this.textData, this.x, this.y)
-    pop()
-  }
-  inputTextName(inputText){
-    if (this.textData.length < this.maxLimit){  
-     
-      this.textData += inputText;
-      
-      
-      nameBox.draw();
-      yourName = this.textData;
-    }
-  }
-  deleteText(){
-    this.textData = this.textData.slice(0, -1);
-    nameBox.draw();
-  }
-}
 function mousePressed(){
   if (mouseX >= windowWidth/2 - 250 && mouseX <= windowWidth/2 + 500 && mouseY <= windowHeight/1.5 + 75 && mouseY >= windowHeight/1.5 - 50){
     clickedOnTextBox = true;
 
+  }
+  else{
+    clickedOnTextBox = false;
   }
 }
 function keyTyped(){
@@ -76,6 +43,7 @@ function keyPressed(){
   if (keyCode === ENTER && clickedOnTextBox){
     console.log("cont to game")
     menuState = "intro"
+    clickedOnTextBox = false;
   }
 }
 
@@ -100,7 +68,7 @@ function ui(){
   showingGame = false;
 }
 function draw() {
-  
+  frameRate(1);
   whichMenu();
 
   
@@ -191,6 +159,12 @@ function showGame(){
 
 function showIntro(){
   background(0);
+  textAlign(CENTER)
+  dialogue();
+  // text("ok boomer", 500, 300)
+  dialogueOptions[0].draw();
+  
+  
 }
   
 
@@ -229,3 +203,22 @@ function whichMenu() {
 // function cookieLoad(){
 //   document.cookie.split(";")
 // }
+
+// function setup() {
+//   createCanvas(100, 100, WEBGL);
+//   noStroke();
+// }
+// function draw() {
+//   background(0);
+//   let locX = mouseX - width / 2;
+//   let locY = mouseY - height / 2;
+//   translate(-25, 0, 0);
+//   lightFalloff(1, 0, 0);
+//   pointLight(250, 250, 250, locX, locY, 50);
+//   sphere(20);
+//   translate(50, 0, 0);
+//   lightFalloff(0.9, 0.01, 0);
+//   pointLight(250, 250, 250, locX, locY, 50);
+//   sphere(20);
+// }
+
