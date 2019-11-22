@@ -8,6 +8,11 @@ let showingGame = false;
 let clickedOnTextBox = false;
 let yourName;
 let money;
+let moveDialogue = 0;
+let allowDialogueChange = false;
+let updateBg = false;
+let bkColor = "black";
+let showingIntro = false;
   
 function setup() {
 canvasWidth = windowWidth;
@@ -24,6 +29,10 @@ function mousePressed(){
   }
   else{
     clickedOnTextBox = false;
+  }
+  if (allowDialogueChange === true){
+    displayText();
+    moveDialogue += 1;
   }
 }
 function keyTyped(){
@@ -68,7 +77,7 @@ function ui(){
   showingGame = false;
 }
 function draw() {
-  frameRate(1);
+  //frameRate(1);
   whichMenu();
 
   
@@ -154,16 +163,25 @@ function showGame(){
   nameBox = new EnterText(windowWidth/2, windowHeight/1.5, 500, 50, 12);
   nameBox.draw();
   
+  
 
 }
 
 function showIntro(){
-  background(0);
+  showingIntro = true;
+  backgroundUpdate();
+  // background(0);
   textAlign(CENTER)
   dialogue();
   // text("ok boomer", 500, 300)
-  dialogueOptions[0].draw();
+  allowDialogueChange = true;
+  updateBg = true;
   
+  
+  
+}
+function displayText(){
+  dialogueOptions[moveDialogue].draw();
   
 }
   
@@ -185,10 +203,26 @@ function whichMenu() {
     showOptions();
   }
 
-  else if (menuState ==="intro"){
+  else if (menuState ==="intro" && showingIntro === false){
+    showingIntro = false;
      showIntro();
   }
 }
+
+function backgroundUpdate(){
+
+    if (menuState === "intro"){
+      background(0)
+      console.log("black")
+      updateBg = false;
+    }
+    
+  
+}
+
+
+
+
 // function keyPressed(){
 //   if(keyCode = 83){
 //     cookieSave();
@@ -221,4 +255,3 @@ function whichMenu() {
 //   pointLight(250, 250, 250, locX, locY, 50);
 //   sphere(20);
 // }
-
