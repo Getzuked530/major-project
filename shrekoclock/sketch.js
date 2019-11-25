@@ -3,6 +3,7 @@ let menuState = "startMenu";
 let noEscape = "Options? What options? You are playing a game desinged by me. What did you think you would find in here.";
 let normalShrek;
 let swampBack;
+let wakeUp;
 let showingGame = false;
 // let testAudio;
 let clickedOnTextBox = false;
@@ -13,6 +14,7 @@ let allowDialogueChange = false;
 let updateBg = false;
 let bkColor = "black";
 let showingIntro = false;
+
   
 function setup() {
 canvasWidth = windowWidth;
@@ -31,8 +33,9 @@ function mousePressed(){
     clickedOnTextBox = false;
   }
   if (allowDialogueChange === true){
-    displayText();
     moveDialogue += 1;
+    displayText();
+    
   }
 }
 function keyTyped(){
@@ -63,9 +66,11 @@ function keyPressed(){
 
 
 function preload(){
-  normalShrek = loadImage("assets/standingShrek.png")
+  // normalShrek = loadImage("assets/standingShrek.png")
   swampBack = loadImage("assets/phatswamp.jpg")
+  wakeUp = loadImage("assets/wakeupscene.jpg")
   // testAudio = loadSound("assets/sharpbreath.mp3");
+  
 }
 
 function windowResized(){
@@ -176,6 +181,9 @@ function showIntro(){
   // text("ok boomer", 500, 300)
   allowDialogueChange = true;
   updateBg = true;
+  image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+  displayText();
+
   
   
   
