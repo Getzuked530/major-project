@@ -9,7 +9,8 @@ class StoryText {
     draw(){
       push();
       fill(255);
-      rect(this.xPos, this.yPos, this.w, this.h); 
+      rect(this.xPos, this.yPos, this.w, this.h);
+      fill(0); 
       text(this.text, this.xPos, this.yPos);
       pop();
       

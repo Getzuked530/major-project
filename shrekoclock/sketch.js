@@ -14,7 +14,8 @@ let allowDialogueChange = false;
 let updateBg = false;
 let bkColor = "black";
 let showingIntro = false;
-
+let alarm;
+let alreadyShown = false;
   
 function setup() {
 canvasWidth = windowWidth;
@@ -33,6 +34,7 @@ function mousePressed(){
     clickedOnTextBox = false;
   }
   if (allowDialogueChange === true){
+    allowDialogueChange = false;
     moveDialogue += 1;
     displayText();
     
@@ -70,6 +72,7 @@ function preload(){
   swampBack = loadImage("assets/phatswamp.jpg")
   wakeUp = loadImage("assets/wakeupscene.jpg")
   // testAudio = loadSound("assets/sharpbreath.mp3");
+  alarm = loadSound("assets/alarm.wav");
   
 }
 
@@ -84,6 +87,12 @@ function ui(){
 function draw() {
   //frameRate(1);
   whichMenu();
+  if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false){
+    image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+    alreadyShown = true;
+    firstScene();
+  }
+  
 
   
 }
@@ -181,13 +190,23 @@ function showIntro(){
   // text("ok boomer", 500, 300)
   allowDialogueChange = true;
   updateBg = true;
-  image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+  
   displayText();
+  alarm.play();
+  
+
+
+  
+
 
   
   
   
 }
+function firstScene(){
+  console.log("help me i want to kashoot myself i regret taking this class")
+}
+
 function displayText(){
   dialogueOptions[moveDialogue].draw();
   
