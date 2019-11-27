@@ -16,6 +16,10 @@ let bkColor = "black";
 let showingIntro = false;
 let alarm;
 let alreadyShown = false;
+let tempTextAllowX;
+let tempTextAllowY;
+let continueWithScene;
+
   
 function setup() {
 canvasWidth = windowWidth;
@@ -37,6 +41,7 @@ function mousePressed(){
     allowDialogueChange = false;
     moveDialogue += 1;
     displayText();
+    changeDialogue(tempTextAllowX, tempTextAllowY);
     
   }
 }
@@ -188,28 +193,48 @@ function showIntro(){
   textAlign(CENTER)
   dialogue();
   // text("ok boomer", 500, 300)
-  allowDialogueChange = true;
+  if (moveDialogue <= 0){
+    allowDialogueChange = true;
+  }
+  else{
+    allowDialogueChange = false;
+  }
   updateBg = true;
   
   displayText();
   alarm.play();
   
-
-
-  
-
-
-  
   
   
 }
+
 function firstScene(){
   console.log("help me i want to kashoot myself i regret taking this class")
+  changeDialogue(0, 3);
+  console.log("AAAAA")
+ 
+
+
+}
+function changeDialogue(greater, less){
+  if (moveDialogue >= greater && moveDialogue < less){
+    allowDialogueChange = true;
+    tempTextAllowX = greater;
+    tempTextAllowY = less;
+
+  }
+  else{
+    allowDialogueChange = false;
+    if (moveDialogue === less){
+      return continueWithScene = true;
+      
+    }
+  }
 }
 
 function displayText(){
   dialogueOptions[moveDialogue].draw();
-  
+  allowDialogueChange = false;
 }
   
 
