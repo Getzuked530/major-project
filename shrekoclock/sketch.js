@@ -19,6 +19,8 @@ let alreadyShown = false;
 let tempTextAllowX;
 let tempTextAllowY;
 let continueWithScene;
+let progress = 0;
+let needsToPlay = false;
 
   
 function setup() {
@@ -42,6 +44,7 @@ function mousePressed(){
     moveDialogue += 1;
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
+  
     
   }
 }
@@ -92,11 +95,12 @@ function ui(){
 function draw() {
   //frameRate(1);
   whichMenu();
-  if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false){
+  if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false && needsToPlay === true){
     image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
     alreadyShown = true;
     firstScene();
   }
+  continueScene();
   
 
   
@@ -188,33 +192,50 @@ function showGame(){
 
 function showIntro(){
   showingIntro = true;
-  backgroundUpdate();
-  // background(0);
-  textAlign(CENTER)
-  dialogue();
-  // text("ok boomer", 500, 300)
-  if (moveDialogue <= 0){
-    allowDialogueChange = true;
+  progress = 1
+  if (progress < 1){
+    backgroundUpdate();
+    // background(0);
+    textAlign(CENTER)
+    dialogue();
+    // text("ok boomer", 500, 300)
+    if (moveDialogue <= 0){
+      allowDialogueChange = true;
+    }
+    else{
+      allowDialogueChange = false;
+    }
+    updateBg = true;
+    needsToPlay = true;
+    displayText();
+
+    alarm.play();
   }
-  else{
-    allowDialogueChange = false;
-  }
-  updateBg = true;
-  
-  displayText();
-  alarm.play();
   
   
   
 }
 
 function firstScene(){
+  progress = 2
   console.log("help me i want to kashoot myself i regret taking this class")
   changeDialogue(0, 3);
   console.log("AAAAA")
- 
+  continueScene();
+  if (continueWithScene){
+    console.log("yee")
+  }
 
 
+}
+function continueScene(){
+  
+    if(moveDialogue === tempTextAllowY){
+      return continueWithScene = true;
+    }
+   
+  
+  
 }
 function changeDialogue(greater, less){
   if (moveDialogue >= greater && moveDialogue < less){
@@ -225,10 +246,10 @@ function changeDialogue(greater, less){
   }
   else{
     allowDialogueChange = false;
-    if (moveDialogue === less){
-      return continueWithScene = true;
+    // if (moveDialogue === less){
+    //   return continueWithScene = true;
       
-    }
+    // }
   }
 }
 
@@ -255,7 +276,7 @@ function whichMenu() {
     showOptions();
   }
 
-  else if (menuState ==="intro" && showingIntro === false){
+  else if (menuState ==="intro" ){
     showingIntro = false;
      showIntro();
   }
