@@ -21,6 +21,11 @@ let tempTextAllowY;
 let continueWithScene;
 let progress = 0;
 let needsToPlay = false;
+let alreadyPlayed = false;
+let showWakeUp = false;
+let notSaid = true;
+let progressUpdated = false;
+let stopTextDisplay = false;
 
   
 function setup() {
@@ -40,10 +45,14 @@ function mousePressed(){
     clickedOnTextBox = false;
   }
   if (allowDialogueChange === true){
+    console.log("yes")
     allowDialogueChange = false;
     moveDialogue += 1;
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
+    // if (continueWithScene && moveDialogue === tempTextAllowY){
+    //   stopTextDisplay = true;
+    // }
   
     
   }
@@ -98,6 +107,7 @@ function draw() {
   if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false && needsToPlay === true){
     image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
     alreadyShown = true;
+    showWakeUp = true;
     firstScene();
   }
   continueScene();
@@ -192,8 +202,11 @@ function showGame(){
 
 function showIntro(){
   showingIntro = true;
-  progress = 1
-  if (progress < 1){
+  if (!progressUpdated){
+    progressUpdated = true;
+    progress = 1;
+  }
+  if (progress === 1){
     backgroundUpdate();
     // background(0);
     textAlign(CENTER)
@@ -207,23 +220,41 @@ function showIntro(){
     }
     updateBg = true;
     needsToPlay = true;
+    
     displayText();
 
-    alarm.play();
+    if (alreadyPlayed === false){
+      alreadyPlayed = true;
+      alarm.play();
+    }
+ 
   }
+  if (showWakeUp){
+    console.log("why?")
+     firstScene();
+   }
+  
   
   
   
 }
 
+
 function firstScene(){
   progress = 2
-  console.log("help me i want to kashoot myself i regret taking this class")
-  changeDialogue(0, 3);
-  console.log("AAAAA")
-  continueScene();
-  if (continueWithScene){
-    console.log("yee")
+  if (progress === 2){
+
+    image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+    console.log("help me i want to kashoot myself i regret taking this class")
+
+    changeDialogue(0, 3);
+    displayText();
+    
+    console.log("AAAAA")
+    // continueScene();
+    if (continueWithScene){
+      console.log("yee")
+    }
   }
 
 
@@ -246,16 +277,21 @@ function changeDialogue(greater, less){
   }
   else{
     allowDialogueChange = false;
-    // if (moveDialogue === less){
-    //   return continueWithScene = true;
+    if (moveDialogue === less){
+      return continueWithScene = true;
       
-    // }
+    }
   }
 }
 
 function displayText(){
-  dialogueOptions[moveDialogue].draw();
-  allowDialogueChange = false;
+  if (!continueWithScene){
+
+    dialogueOptions[moveDialogue].draw();
+  }
+  else if(continueWithScene && mousePressed && moveDialogue === tempTextAllowY){
+    console.log("hello")
+  }
 }
   
 
@@ -288,6 +324,9 @@ function backgroundUpdate(){
       background(0)
       console.log("black")
       updateBg = false;
+    }
+    if (showWakeUp){
+      image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
     }
     
   
