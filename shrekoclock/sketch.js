@@ -241,7 +241,11 @@ function showIntro(){
 
 
 function firstScene(){
-  progress = 2
+  progressUpdated = false;
+  if (!progressUpdated){
+    progressUpdated = true;
+    progress = 2
+  }
   if (progress === 2){
 
     image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
