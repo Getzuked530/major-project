@@ -85,7 +85,7 @@ function keyPressed(){
 
 
 function preload(){
-  // normalShrek = loadImage("assets/standingShrek.png")
+  normalShrek = loadImage("assets/shrek_PNG2.png")
   swampBack = loadImage("assets/phatswamp.jpg")
   wakeUp = loadImage("assets/wakeupscene.jpg")
   // testAudio = loadSound("assets/sharpbreath.mp3");
@@ -257,7 +257,8 @@ function firstScene(){
     console.log("AAAAA")
     // continueScene();
     if (continueWithScene){
-      console.log("yee")
+      console.log("yee");
+      image(normalShrek, 500, windowHeight - 200, width/2, height/2)
     }
   }
 
