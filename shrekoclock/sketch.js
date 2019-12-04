@@ -26,6 +26,7 @@ let showWakeUp = false;
 let notSaid = true;
 let progressUpdated = false;
 let stopTextDisplay = false;
+let bedroom;
 
   
 function setup() {
@@ -90,6 +91,7 @@ function preload(){
   wakeUp = loadImage("assets/wakeupscene.jpg")
   // testAudio = loadSound("assets/sharpbreath.mp3");
   alarm = loadSound("assets/alarm.wav");
+  bedroom = loadImage("assets/bedroom.jpg");
   
 }
 
@@ -230,7 +232,6 @@ function showIntro(){
  
   }
   if (showWakeUp){
-    console.log("why?")
      firstScene();
    }
   
@@ -249,16 +250,32 @@ function firstScene(){
   if (progress === 2){
 
     image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
-    console.log("help me i want to kashoot myself i regret taking this class")
-
+    
     changeDialogue(0, 3);
     displayText();
     
-    console.log("AAAAA")
+    
     // continueScene();
     if (continueWithScene){
-      console.log("yee");
+      
+      image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
       image(normalShrek, 500, windowHeight - 200, width/2, height/2)
+      if (moveDialogue <= tempTextAllowY){
+
+        changeDialogue(3, 4);
+        
+        continueWithScene = false;
+        displayText();
+      }
+      console.log("happening")
+      if (continueWithScene === true){
+        
+        progress = 3;
+        
+      }
+    }
+    if (progress === 3){
+      image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
     }
   }
 
@@ -278,11 +295,14 @@ function changeDialogue(greater, less){
     allowDialogueChange = true;
     tempTextAllowX = greater;
     tempTextAllowY = less;
+    console.log("umm")
 
   }
   else{
     allowDialogueChange = false;
     if (moveDialogue === less){
+      console.log("ho")
+      sceneChange = true;
       return continueWithScene = true;
       
     }
@@ -372,3 +392,7 @@ function backgroundUpdate(){
 //   pointLight(250, 250, 250, locX, locY, 50);
 //   sphere(20);
 // }
+
+// CREEPY SHREKY FUN TIME SCENE
+// image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+// image(normalShrek, 500, windowHeight - 200, width/2, height/2)
