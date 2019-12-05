@@ -1,10 +1,14 @@
 class StoryText {
-    constructor(text1, xpos1, ypos1, w1, h1){
+    constructor(text1, xpos1, ypos1, w1, h1, blank){
       this.text = text1;
       this.xPos = xpos1;
       this.yPos = ypos1;
       this.w = w1;
       this.h = h1;
+      
+      this.isBlank = blank;
+
+
     }
     draw(){
       push();
@@ -15,6 +19,15 @@ class StoryText {
       text(this.text, this.xPos, this.yPos, this.w, this.h);
       pop();
       
+    }
+    blankText(){
+      if(dialogueOptions[moveDialogue].isBlank === true){
+        return thisIsBlank = true;
+      }
+      else{
+        return thisIsBlank = false;
+      }
+
     }
   }
   class EnterText {

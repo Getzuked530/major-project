@@ -27,9 +27,11 @@ let notSaid = true;
 let progressUpdated = false;
 let stopTextDisplay = false;
 let bedroom;
+let thisIsBlank;
 
   
 function setup() {
+  dialogue();
 canvasWidth = windowWidth;
 canvasHeight = windowHeight;
 createCanvas(canvasWidth, canvasHeight)
@@ -38,6 +40,8 @@ background(255)
 
 
 function mousePressed(){
+  console.log(allowDialogueChange)
+  
   if (mouseX >= windowWidth/2 - 250 && mouseX <= windowWidth/2 + 500 && mouseY <= windowHeight/1.5 + 75 && mouseY >= windowHeight/1.5 - 50){
     clickedOnTextBox = true;
 
@@ -46,9 +50,11 @@ function mousePressed(){
     clickedOnTextBox = false;
   }
   if (allowDialogueChange === true){
-    console.log("yes")
+    
+    
     allowDialogueChange = false;
     moveDialogue += 1;
+    console.log(moveDialogue)
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
     // if (continueWithScene && moveDialogue === tempTextAllowY){
@@ -104,6 +110,8 @@ function ui(){
   showingGame = false;
 }
 function draw() {
+  dialogueOptions[moveDialogue].blankText();
+
   //frameRate(1);
   whichMenu();
   if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false && needsToPlay === true){
@@ -212,7 +220,7 @@ function showIntro(){
     backgroundUpdate();
     // background(0);
     textAlign(CENTER)
-    dialogue();
+    // dialogue();
     // text("ok boomer", 500, 300)
     if (moveDialogue <= 0){
       allowDialogueChange = true;
@@ -222,9 +230,7 @@ function showIntro(){
     }
     updateBg = true;
     needsToPlay = true;
-    
     displayText();
-
     if (alreadyPlayed === false){
       alreadyPlayed = true;
       alarm.play();
@@ -261,13 +267,13 @@ function firstScene(){
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
       image(normalShrek, 500, windowHeight - 200, width/2, height/2)
       if (moveDialogue <= tempTextAllowY){
-
-        changeDialogue(3, 4);
-        
         continueWithScene = false;
+        changeDialogue(3, 5);
+        
+        
         displayText();
       }
-      console.log("happening")
+      //console.log("happening")
       if (continueWithScene === true){
         
         progress = 3;
@@ -284,6 +290,7 @@ function firstScene(){
 function continueScene(){
   
     if(moveDialogue === tempTextAllowY){
+      
       return continueWithScene = true;
     }
    
@@ -299,10 +306,13 @@ function changeDialogue(greater, less){
 
   }
   else{
-    allowDialogueChange = false;
-    if (moveDialogue === less){
+    dialogueOptions[moveDialogue].blankText();
+    if (thisIsBlank){
+      
+      allowDialogueChange = false;
       console.log("ho")
       sceneChange = true;
+      tempTextAllowY += 5;
       return continueWithScene = true;
       
     }
@@ -310,13 +320,14 @@ function changeDialogue(greater, less){
 }
 
 function displayText(){
-  if (!continueWithScene){
+  dialogueOptions[moveDialogue].blankText();
+  if (!continueWithScene && !thisIsBlank){
 
     dialogueOptions[moveDialogue].draw();
   }
-  else if(continueWithScene && mousePressed && moveDialogue === tempTextAllowY){
-    console.log("hello")
-  }
+  // else if(continueWithScene && mousePressed && moveDialogue === tempTextAllowY){
+  //   console.log("hello")
+  // }
 }
   
 
