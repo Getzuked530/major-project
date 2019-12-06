@@ -40,6 +40,9 @@ canvasWidth = windowWidth;
 canvasHeight = windowHeight;
 createCanvas(canvasWidth, canvasHeight)
 background(255)
+// if (getItem("progress") !== null){
+//   progress = getItem("progress")
+// }
 }
 
 
@@ -221,6 +224,7 @@ function showIntro(){
   if (!progressUpdated){
     progressUpdated = true;
     progress = 1;
+    // storeItem("progress", progress);
   }
   if (progress === 1){
     backgroundUpdate();
@@ -258,6 +262,7 @@ function firstScene(){
   if (!progressUpdated){
     progressUpdated = true;
     progress = 2
+    // storeItem("progress", progress)
   }
   if (progress === 2){
 
@@ -283,6 +288,7 @@ function firstScene(){
       if (continueWithScene === true){
         
         progress = 3;
+        // storeItem("progress", progress)
         
       }
     }
