@@ -28,6 +28,10 @@ let progressUpdated = false;
 let stopTextDisplay = false;
 let bedroom;
 let thisIsBlank;
+let gateWay = false;
+let testerByPass = true;
+let miniGameSpriteX = 500;
+let miniGameSpriteY = 500;
 
   
 function setup() {
@@ -51,9 +55,9 @@ function mousePressed(){
   }
   if (allowDialogueChange === true){
     
-    
-    allowDialogueChange = false;
     moveDialogue += 1;
+    allowDialogueChange = false;
+    
     console.log(moveDialogue)
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
@@ -111,7 +115,9 @@ function ui(){
 }
 function draw() {
   dialogueOptions[moveDialogue].blankText();
-
+  if (testerByPass){
+    firstScene();
+  }
   //frameRate(1);
   whichMenu();
   if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false && needsToPlay === true){
@@ -262,8 +268,8 @@ function firstScene(){
     
     
     // continueScene();
-    if (continueWithScene){
-      
+    if (continueWithScene || gateWay){
+      gateWay = true;
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
       image(normalShrek, 500, windowHeight - 200, width/2, height/2)
       if (moveDialogue <= tempTextAllowY){
@@ -282,6 +288,8 @@ function firstScene(){
     }
     if (progress === 3){
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+      makeMap();
+      
     }
   }
 
