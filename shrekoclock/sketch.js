@@ -80,6 +80,10 @@ function keyTyped(){
 
 }
 function keyPressed(){
+  console.log("ppls")
+  if (keyCode === BACKSPACE){
+    console.log("ehhhhhhh")
+  }
   if (keyCode === BACKSPACE && clickedOnTextBox){
 
     nameBox.deleteText();
@@ -90,6 +94,7 @@ function keyPressed(){
     menuState = "intro"
     clickedOnTextBox = false;
   }
+
 }
 
 
@@ -117,6 +122,9 @@ function ui(){
   showingGame = false;
 }
 function draw() {
+  if (miniGameDisplaying){
+    move();
+  }
   dialogueOptions[moveDialogue].blankText();
   if (testerByPass){
     firstScene();
