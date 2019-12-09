@@ -29,7 +29,7 @@ let stopTextDisplay = false;
 let bedroom;
 let thisIsBlank;
 let gateWay = false;
-let testerByPass = true;
+let testerByPass = false;
 let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
 
@@ -161,13 +161,13 @@ function startMenu(){
   textSize(50);
   fill(0);
   text("Start Game", width/2, height/2 - 100);
+  
 
   //Show Options button
   fill(0, 255, 0, 125);
   rect(width/2, height/2 + 100, 400, 150);
   fill(0);
   text("Options", width/2, height/2 + 100);
-
   
 }
 
@@ -332,7 +332,7 @@ function changeDialogue(greater, less){
     if (thisIsBlank){
       
       allowDialogueChange = false;
-      console.log("ho")
+     
       sceneChange = true;
       tempTextAllowY += 5;
       return continueWithScene = true;
