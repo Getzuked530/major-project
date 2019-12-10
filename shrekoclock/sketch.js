@@ -72,7 +72,7 @@ function mousePressed(){
   }
 }
 function keyTyped(){
-  if (clickedOnTextBox){
+  if (clickedOnTextBox && menuState === "startGame"){
     nameBox.inputTextName(key);
   }
   
