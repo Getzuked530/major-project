@@ -67,8 +67,14 @@ function mousePressed(){
     // if (continueWithScene && moveDialogue === tempTextAllowY){
     //   stopTextDisplay = true;
     // }
+
+
   
     
+  }
+  
+  if(miniGameDisplaying){
+    attack();
   }
 }
 function keyTyped(){
