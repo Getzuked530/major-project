@@ -68,7 +68,7 @@ class StoryText {
   class Mobs {
     constructor(mobX1, mobY1, healthVal, size1, size2, speed,  ){
     this.mX = mobX1;
-    this.mY = mobX1;
+    this.mY = mobY1;
     this.health = healthVal;
     this.mSize1 = size1;
     this.mSize2 = size2;
@@ -77,13 +77,18 @@ class StoryText {
   draw(){
     for(let i = 0; i < enemies.length; i++){
       rect(enemies[i].mX, enemies[i].mY, enemies[i].mSize1, enemies[i].mSize2)
-      console.log("enemy spawned")
+      // console.log("enemy spawned")
     }
   }
   didHit(){
     for (let i = 0; i <enemies.length; i++){
-      if (enemies[i].mX >= boxX && enemies[i].mX <= boxX && enemies[i].mY <= boxY && enemies[i].mY >= boxY )
-      console.log("hit")
+      if (enemies[i].mX <= miniGameSpriteX+10 && enemies[i].mX >= miniGameSpriteX + 10 + 20 && enemies[i].mY <= miniGameSpriteY + 10 && enemies[i].mY >= miniGameSpriteY + 10 + 20 ){
+
+        console.log("hit")
+      }
+      else{
+        console.log("no hit")
+      }
     }
   }
 }

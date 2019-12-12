@@ -74,7 +74,7 @@ function mousePressed(){
   }
   
   if(miniGameDisplaying){
-    attack();
+    fire();
   }
 }
 function keyTyped(){
@@ -144,10 +144,12 @@ function draw() {
     firstScene();
   }
   continueScene();
+  updateBullets();
   
 
   
 }
+
 
 function startMenu(){
   
