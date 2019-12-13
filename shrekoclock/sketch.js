@@ -29,7 +29,7 @@ let stopTextDisplay = false;
 let bedroom;
 let thisIsBlank;
 let gateWay = false;
-let testerByPass = false;
+let testerByPass = true;
 let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
 
@@ -128,6 +128,12 @@ function ui(){
   showingGame = false;
 }
 function draw() {
+  if (mobsMove){
+    for (let i = 0; i < enemies.length; i++){
+      enemies[i].didHit(i);
+      enemies[i].moveMobs(i);
+    }
+  }
   if (miniGameDisplaying){
     move();
   }

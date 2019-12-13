@@ -80,15 +80,27 @@ class StoryText {
       // console.log("enemy spawned")
     }
   }
-  didHit(){
-    for (let i = 0; i <enemies.length; i++){
-      if (enemies[i].mX <= miniGameSpriteX+10 && enemies[i].mX >= miniGameSpriteX + 10 + 20 && enemies[i].mY <= miniGameSpriteY + 10 && enemies[i].mY >= miniGameSpriteY + 10 + 20 ){
-
+  didHit(enemy){
+    for (let i = 0; i <bullets.length; i++){
+      if (bullets[i].x > enemies[enemy].mX && bullets[i].x < enemies[enemy].mX + enemies[enemy].mSize1 && bullets[i].y > enemies[enemy].mY && bullets[i].y < enemies[enemy].mY + enemies[enemy].mSize2){
         console.log("hit")
-      }
-      else{
-        console.log("no hit")
+        enemies.slice(enemy, 1)
       }
     }
+  }
+  moveMobs(mob){
+    
+      if (enemies[mob].mX < miniGameSpriteX){
+        enemies[mob].mX += enemies[mob].speedy
+      }
+      if (enemies[mob].mX > miniGameSpriteX){
+        enemies[mob].mX -= enemies[mob].speedy
+      }
+      if (enemies[mob].mY < miniGameSpriteY){
+        enemies[mob].mY += enemies[mob].speedy
+      }
+      if (enemies[mob].mY > miniGameSpriteY){
+        enemies[mob].mY -= enemies[mob].speedy
+      } 
   }
 }

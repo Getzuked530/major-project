@@ -1,5 +1,6 @@
 let miniGameDisplaying = false
 let rotateAngle;
+let mobsMove = false;
 
 let enemies = [];
 let enemiesDisplaying = false;
@@ -57,11 +58,15 @@ function faceMouse(){
 function attack(){
     
     spawnMobs();
-    enemies[0].didHit();
+    
 }
 function spawnMobs(){
-    enemies.push(new Mobs(50, 50, 100, 20, 20, 50));
+    
+   
+    enemies.push(new Mobs(random(0, width/1.5) ,random(0, height/1.5), 100, 20, 20, random(1,3)));
     enemiesDisplaying = true
+    mobsMove = true
+    
     
 }
 function fire() {
@@ -73,11 +78,12 @@ function fire() {
       speed: 5
     };
     bullets.push(thisBullet);
+    spawnMobs();
   }
   function updateBullets() {
     for (let i = bullets.length - 1; i > 0; i--) {
-      if (bullets[i].x < 0 || bullets[i].x > width ||
-          bullets[i].y < 0 || bullets[i].y > height) {
+      if (bullets[i].x < 0 || bullets[i].x > width/1.5 ||
+          bullets[i].y < 0 || bullets[i].y > height/1.5) {
             bullets.splice(i, 1);
       }
       else {
@@ -87,4 +93,5 @@ function fire() {
       }
     }
   }
+
 
