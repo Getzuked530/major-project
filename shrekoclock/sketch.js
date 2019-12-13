@@ -130,8 +130,17 @@ function ui(){
 function draw() {
   if (mobsMove){
     for (let i = 0; i < enemies.length; i++){
-      enemies[i].didHit(i);
+      if(enemies[i].didHit(i)){
+        enemies.splice(i, 1) 
+      }
+      
+    }
+    
+  }
+  if (mobsMove){
+    for (let i = 0; i < enemies.length; i++){
       enemies[i].moveMobs(i);
+      
     }
   }
   if (miniGameDisplaying){

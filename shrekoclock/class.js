@@ -84,7 +84,7 @@ class StoryText {
     for (let i = 0; i <bullets.length; i++){
       if (bullets[i].x > enemies[enemy].mX && bullets[i].x < enemies[enemy].mX + enemies[enemy].mSize1 && bullets[i].y > enemies[enemy].mY && bullets[i].y < enemies[enemy].mY + enemies[enemy].mSize2){
         console.log("hit")
-        enemies.slice(enemy, 1)
+        return true;
       }
     }
   }
