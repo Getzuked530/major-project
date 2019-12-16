@@ -101,6 +101,13 @@ function keyPressed(){
     clickedOnTextBox = false;
   }
 
+  if (key === "c"){
+    for (let i = 0; i < 12; i++){
+
+      spawnMobs();
+    }
+  }
+
 }
 
 
@@ -130,8 +137,10 @@ function ui(){
 function draw() {
   if (mobsMove){
     for (let i = 0; i < enemies.length; i++){
-      if(enemies[i].didHit(i)){
-        enemies.splice(i, 1) 
+      if (bullets.length >= 1){
+        if(enemies[i].didHit(i)&& bullets.length >= 1){
+          enemies.splice(i, 1);
+        }
       }
       
     }

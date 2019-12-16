@@ -1,7 +1,6 @@
 let miniGameDisplaying = false
 let rotateAngle;
 let mobsMove = false;
-
 let enemies = [];
 let enemiesDisplaying = false;
 let bullets = [];
@@ -14,8 +13,10 @@ function makeMap(){
     
     faceMouse();
     if (enemiesDisplaying === true){
+        for (let i = 0; i < enemies.length; i++){
 
-        enemies[0].draw();
+            enemies[i].draw();
+        }
     }
  
 }
@@ -73,12 +74,12 @@ function fire() {
     let thisBullet = {
       x: miniGameSpriteX,
       y: miniGameSpriteY,
-      radius: 10,
+      radius: 25,
       angle: rotateAngle,
-      speed: 5
+      speed: 1
     };
     bullets.push(thisBullet);
-    spawnMobs();
+    //spawnMobs();
   }
   function updateBullets() {
     for (let i = bullets.length - 1; i > 0; i--) {
