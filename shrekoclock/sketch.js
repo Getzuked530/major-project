@@ -32,6 +32,7 @@ let gateWay = false;
 let testerByPass = true;
 let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
+let newMobsGoal = 0;
 
   
 function setup() {
@@ -102,10 +103,11 @@ function keyPressed(){
   }
 
   if (key === "c"){
-    for (let i = 0; i < 12; i++){
-
+    newMobsGoal = millis() + 1000;
+   
+      
       spawnMobs();
-    }
+    
   }
 
 }
@@ -135,10 +137,12 @@ function ui(){
   showingGame = false;
 }
 function draw() {
+
   if (mobsMove){
     for (let i = 0; i < enemies.length; i++){
       if (bullets.length >= 1){
         if(enemies[i].didHit(i)&& bullets.length >= 1){
+          score += 10
           enemies.splice(i, 1);
         }
       }
@@ -154,6 +158,8 @@ function draw() {
   }
   if (miniGameDisplaying){
     move();
+    spawnMobs()
+    
   }
   dialogueOptions[moveDialogue].blankText();
   if (testerByPass){

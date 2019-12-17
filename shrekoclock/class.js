@@ -82,27 +82,39 @@ class StoryText {
   }
   didHit(enemy){
     for (let i = 0; i <bullets.length; i++){
-      if (bullets[i].x + bullets[i].radius/2 > enemies[enemy].mX && bullets[i].x + bullets[i].radius/2 < enemies[enemy].mX + enemies[enemy].mSize1 && bullets[i].y + bullets[i].radius/2 > enemies[enemy].mY && bullets[i].y + bullets[i].radius/2 < enemies[enemy].mY + enemies[enemy].mSize2){
+      if (bullets[i].x + bullets[i].radius/2 > enemies[enemy].mX - 10 && bullets[i].x + bullets[i].radius/2 < enemies[enemy].mX + 10 + enemies[enemy].mSize1 && bullets[i].y + bullets[i].radius/2 > enemies[enemy].mY - 10 && bullets[i].y + bullets[i].radius/2 < enemies[enemy].mY + 10 + enemies[enemy].mSize2){
         console.log("hit")
+        
         return true;
       }
     }
   }
   moveMobs(mob){
-    for (let i = 0; i < 10; i++){
+    
       if (enemies[mob].mX < miniGameSpriteX){
+     
+        
         enemies[mob].mX += enemies[mob].speedy
+        
       }
       if (enemies[mob].mX > miniGameSpriteX){
+      
         enemies[mob].mX -= enemies[mob].speedy
+        
       }
       if (enemies[mob].mY < miniGameSpriteY){
+        
+
         enemies[mob].mY += enemies[mob].speedy
+        
       }
       if (enemies[mob].mY > miniGameSpriteY){
+      
+
         enemies[mob].mY -= enemies[mob].speedy
+       
       } 
         
-    }
+    
   }
 }
