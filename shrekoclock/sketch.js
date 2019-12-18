@@ -69,10 +69,14 @@ function mousePressed(){
     //   stopTextDisplay = true;
     // }
 
-
   
     
   }
+  if (!notDead){
+    notDead = true;
+    playerHealth = 10
+}
+
   
   if(miniGameDisplaying){
     fire();
@@ -137,7 +141,9 @@ function ui(){
   showingGame = false;
 }
 function draw() {
-
+if (progress === 2){
+  console.log("lower than 2")
+}
   if (mobsMove){
     for (let i = 0; i < enemies.length; i++){
       if (bullets.length >= 1){
@@ -332,8 +338,10 @@ function firstScene(){
       }
       //console.log("happening")
       if (continueWithScene === true){
-        
-        progress = 3;
+        if (progress <= 3){
+
+          progress = 3;
+        }
         // storeItem("progress", progress)
         
       }
@@ -341,7 +349,11 @@ function firstScene(){
     if (progress === 3){
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
       makeMap();
-      
+    }
+    if (progress === 4){
+      progress = 4
+      console.log("yee")
+      background(0);
     }
   }
 
@@ -467,3 +479,7 @@ function backgroundUpdate(){
 // CREEPY SHREKY FUN TIME SCENE
 // image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 // image(normalShrek, 500, windowHeight - 200, width/2, height/2)
+
+// reset minigame
+// notDead = true;
+// playerHealth = 100

@@ -114,6 +114,11 @@ class StoryText {
         enemies[mob].mY -= enemies[mob].speedy
        
       } 
+      if(enemies[mob].mX + 10 > miniGameSpriteX && enemies[mob].mY - 10 < miniGameSpriteY && enemies[mob].mX - 10 < miniGameSpriteX && enemies[mob].mY +10 > miniGameSpriteY){
+          enemies.splice(mob, 1)
+          playerHealth -= 10
+          console.log(playerHealth)
+      }
         
     
   }

@@ -5,25 +5,34 @@ let enemies = [];
 let enemiesDisplaying = false;
 let bullets = [];
 let score = 0;
+let playerHealth = 10;
+let notDead = true;
+let notWin = true;
+let neededScore = 30;
 function makeMap(){
-    //frameRate(10)
-    push()
-    rectMode(CORNER);
-    miniGameDisplaying = true;
-    rect(0, 0, width/1.5, height/1.5);
-    pop()
+    if (notDead && notWin){
+        //frameRate(10)
+        push()
+        rectMode(CORNER);
+        miniGameDisplaying = true;
+        rect(0, 0, width/1.5, height/1.5);
+        pop()
+        
+        faceMouse();
+        if (enemiesDisplaying === true){
+            for (let i = 0; i < enemies.length; i++){
     
-    faceMouse();
-    if (enemiesDisplaying === true){
-        for (let i = 0; i < enemies.length; i++){
-
-            enemies[i].draw();
+                enemies[i].draw();
+            }
         }
+        push()
+        fill(0);
+        text(score, windowWidth/2, windowHeight/5)
+        pop()
+        isDead();
+        isWin();
     }
-    push()
-    fill(0);
-    text(score, windowWidth/2, windowHeight/5)
-    pop()
+    
 }
 function move(){
  
@@ -53,11 +62,6 @@ function faceMouse(){
     translate(miniGameSpriteX, miniGameSpriteY);
     rotateAngle = atan2(mouseY - miniGameSpriteY, mouseX - miniGameSpriteX);
     rotate(rotateAngle)
-    push()
-    // noStroke()
-    // fill(255, 255, 255, 0)
-    rect(10, 10, 30, 30 );
-    pop();
     rect(0, 0, 20, 20);
     pop()
 }
@@ -122,3 +126,34 @@ function fire() {
   }
 
 
+function isDead(){
+    if (playerHealth <= 0){
+        notDead = false;
+        miniGameDisplaying = false;
+        background(0)
+        enemiesDisplaying = false
+        mobsMove = false
+        score = 0
+        for (let j = enemies.length; j >= 0; j--){
+            enemies.splice(j, 1)
+        }
+        console.log("lose")
+    }
+}
+function isWin(){
+    if (score === neededScore){
+        progress = 4
+        notWin = false;
+        miniGameDisplaying = false;
+        background(0)
+        enemiesDisplaying = false
+        mobsMove = false
+        score = 0
+        for (let j = enemies.length; j >= 0; j--){
+            enemies.splice(j, 1)
+        }
+        console.log("win")
+        
+
+    }
+}
