@@ -8,7 +8,7 @@ let score = 0;
 let playerHealth = 10;
 let notDead = true;
 let notWin = true;
-let neededScore = 80;
+let neededScore = 10;
 function makeMap(){
     if (notDead && notWin){
         //frameRate(10)
