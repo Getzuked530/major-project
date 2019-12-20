@@ -5,10 +5,10 @@ let enemies = [];
 let enemiesDisplaying = false;
 let bullets = [];
 let score = 0;
-let playerHealth = 10;
+let playerHealth = 100;
 let notDead = true;
 let notWin = true;
-let neededScore = 10;
+let neededScore = 100;
 function makeMap(){
     if (notDead && notWin){
         //frameRate(10)
@@ -75,10 +75,10 @@ function spawnMobs(){
     
     if (newMobsGoal - 100 < millis() && newMobsGoal + 100 > millis()){
         console.log(millis())
-        newMobsGoal = millis() + 1000 
+        newMobsGoal = millis() + 1000
         for (let i = 0; i < 1; i++){
 
-            enemies.push(new Mobs(random(0, width/1.5) ,random(0, height/1.5), 100, 20, 20, random(3,6)));
+            enemies.push(new Mobs(random(0, width/1.5) - miniGameSpriteX/3,random(0, height/1.5) - miniGameSpriteY/3, 100, 20, 20, random(10,15)));
         }
         enemiesDisplaying = true
         mobsMove = true
