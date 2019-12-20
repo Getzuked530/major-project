@@ -33,7 +33,7 @@ let testerByPass = false;
 let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
 let newMobsGoal = 0;
-
+let bugCoverUp = false;
   
 function setup() {
   dialogue();
@@ -58,9 +58,9 @@ function mousePressed(){
     clickedOnTextBox = false;
   }
   if (allowDialogueChange === true){
-    
-    moveDialogue += 1;
     allowDialogueChange = false;
+    moveDialogue += 1;
+    
     
     console.log(moveDialogue)
     displayText();
@@ -141,9 +141,7 @@ function ui(){
   showingGame = false;
 }
 function draw() {
-if (progress === 2){
-  console.log("lower than 2")
-}
+
   if (mobsMove){
     for (let i = 0; i < enemies.length; i++){
       if (bullets.length >= 1){
@@ -310,13 +308,19 @@ function showIntro(){
 
 
 function firstScene(){
-  progressUpdated = false;
+  if (!bugCoverUp){
+    bugCoverUp = true;
+    dialogueOptions.splice(1, 1)
+  }
+  if (progress === 1 || progress === 2 || progress === 3){
+    progressUpdated = false;
+  }
   if (!progressUpdated){
     progressUpdated = true;
     progress = 2
     // storeItem("progress", progress)
   }
-  if (progress === 2){
+  if (progress >= 2){
 
     image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
     
@@ -328,7 +332,7 @@ function firstScene(){
     if (continueWithScene || gateWay){
       gateWay = true;
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
-      image(normalShrek, 500, windowHeight - 200, width/2, height/2)
+      
       if (moveDialogue <= tempTextAllowY){
         continueWithScene = false;
         changeDialogue(3, 5);
@@ -349,11 +353,17 @@ function firstScene(){
     if (progress === 3){
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
       makeMap();
+      if (!notWin){
+        progress = 4
+      }
     }
     if (progress === 4){
       progress = 4
-      console.log("yee")
-      background(0);
+      progressUpdated = true;
+      image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+      image(normalShrek, 500, windowHeight - 200, width/2, height/2)
+      changeDialogue(5, 8);
+      displayText();
     }
   }
 
