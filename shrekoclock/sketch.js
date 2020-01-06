@@ -34,6 +34,8 @@ let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
 let newMobsGoal = 0;
 let bugCoverUp = false;
+let frontDesk;
+let choices = [];
   
 function setup() {
   dialogue();
@@ -129,6 +131,7 @@ function preload(){
   // testAudio = loadSound("assets/sharpbreath.mp3");
   alarm = loadSound("assets/alarm.wav");
   bedroom = loadImage("assets/bedroom.jpg");
+  frontDesk = loadImage("assets/frontdesk.jpg")
   
 }
 
@@ -193,7 +196,7 @@ function startMenu(){
   textAlign(CENTER, TOP)
   fill("white")
   stroke("black")
-  text("Welcome to Hell on Earth aka Shrek Dating Sim", width/2, 100)
+  text("Welcome to the 9th Circle of Hell ", width/2, 100)
 
   //show start button
   rectMode(CENTER);
@@ -335,8 +338,20 @@ function firstScene(){
       
       if (moveDialogue <= tempTextAllowY){
         continueWithScene = false;
-        changeDialogue(3, 5);
-        
+        changeDialogue(3, 10);
+        if (moveDialogue > 3){
+
+          image(frontDesk, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+          if (moveDialogue > 5){
+            image(normalShrek, 500, windowHeight - 200, width/2, height/2)
+          }
+          if (moveDialogue === 7){
+            choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 - 300, windowHeight/2 + 100, 50, 150))
+            for(let i = 0; i < choices.length; i++){
+              choices.draw()
+            }
+          }
+        }
         
         displayText();
       }
@@ -352,17 +367,16 @@ function firstScene(){
     }
     if (progress === 3){
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
-      makeMap();
-      if (!notWin){
-        progress = 4
-      }
+      // makeMap();
+      // if (!notWin){
+      //   progress = 4
+      // }
     }
     if (progress === 4){
       progress = 4
       progressUpdated = true;
-      image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
-      image(normalShrek, 500, windowHeight - 200, width/2, height/2)
-      changeDialogue(5, 8);
+      
+      changeDialogue(10, 13);
       displayText();
     }
   }
@@ -449,6 +463,18 @@ function backgroundUpdate(){
     
   
 }
+function charismaCheck() {
+  
+  if (charisma < 1){
+    
+  } 
+  if (charisma < 1){
+    
+  } 
+  if (charisma < 1){
+    
+  } 
+}
 
 
 
@@ -493,3 +519,7 @@ function backgroundUpdate(){
 // reset minigame
 // notDead = true;
 // playerHealth = 100
+
+
+// wake up, get ready, go to work, at work bump into shrek knock papers out of hands,
+// shrek helps you up, and helps gather papers, go on date with shrek, charisma checks, if failed bad date, if succeed go to minigame, if minigame fail, ok date, if minigame win good date.

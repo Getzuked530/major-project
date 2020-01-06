@@ -123,3 +123,17 @@ class StoryText {
     
   }
 }
+
+class MultipleDialogue {
+  constructor(text, x, y, height, width, type){
+    this.text = text;
+    this.x = x;
+    this.y = y;
+    this.w = width;
+    this.h = height;
+    this.type = type;
+  }
+  draw(){
+    rect(this.x, this.y, this.w, this.h);
+  }
+}
