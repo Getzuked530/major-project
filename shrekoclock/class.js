@@ -134,6 +134,7 @@ class MultipleDialogue {
     this.type = type;
   }
   draw(){
+    console.log(choices)
     rect(this.x, this.y, this.w, this.h);
   }
 }

@@ -345,10 +345,13 @@ function firstScene(){
           if (moveDialogue > 5){
             image(normalShrek, 500, windowHeight - 200, width/2, height/2)
           }
-          if (moveDialogue === 7){
-            choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 - 300, windowHeight/2 + 100, 50, 150))
+          if (moveDialogue === 8){
+            choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 - 300, windowHeight/2 - 100, 50, 150, "charisma"))
+            choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 - 300, windowHeight/2 + 100, 50, 150, "flirt"))
+            choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 + 300, windowHeight/2 - 100, 50, 150, "inetelligence"))
+            choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 + 300, windowHeight/2 + 100, 50, 150, "sass"))
             for(let i = 0; i < choices.length; i++){
-              choices.draw()
+              choices[i].draw()
             }
           }
         }
