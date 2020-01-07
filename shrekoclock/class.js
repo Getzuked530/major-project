@@ -134,7 +134,18 @@ class MultipleDialogue {
     this.type = type;
   }
   draw(){
-    console.log(choices)
+    
     rect(this.x, this.y, this.w, this.h);
+    push()
+    fill(0);
+    textSize(20);
+    text(this.text, this.x, this.y, this.w, this.h)
+    pop();
+  }
+  clickedOnOption(){
+    
+    if (mouseX > this.x && mouseX < this.x + this.h && mouseY > this.y && mouseY < this.y + this.w){
+      console.log(this.type)
+    }
   }
 }
