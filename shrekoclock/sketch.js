@@ -29,13 +29,14 @@ let stopTextDisplay = false;
 let bedroom;
 let thisIsBlank;
 let gateWay = false;
-let testerByPass = true;
+let testerByPass = false;
 let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
 let newMobsGoal = 0;
 let bugCoverUp = false;
 let frontDesk;
 let choices = [];
+let dialoguePathCorrect = false;
   
 function setup() {
   dialogue();
@@ -59,7 +60,23 @@ function mousePressed(){
   else{
     clickedOnTextBox = false;
   }
-  if (allowDialogueChange === true){
+  if (allowDialogueChange === true && dialoguePathCorrect === true){
+    allowDialogueChange = false;
+    moveDialogue = 20
+    
+    
+    console.log(moveDialogue)
+    displayText();
+    changeDialogue(tempTextAllowX, tempTextAllowY);
+    dialoguePathCorrect = false
+    // if (continueWithScene && moveDialogue === tempTextAllowY){
+    //   stopTextDisplay = true;
+    // }
+
+  
+    
+  }
+  if (allowDialogueChange === true && dialoguePathCorrect === false){
     allowDialogueChange = false;
     moveDialogue += 1;
     
@@ -338,7 +355,7 @@ function firstScene(){
       
       if (moveDialogue <= tempTextAllowY){
         continueWithScene = false;
-        changeDialogue(3, 10);
+        changeDialogue(3, 23);
         if (moveDialogue > 3){
 
           image(frontDesk, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
@@ -346,17 +363,19 @@ function firstScene(){
             image(normalShrek, 500, windowHeight - 200, width/2, height/2)
           }
           if (moveDialogue === 8){
+            allowDialogueChange = false;
             if (choices.length < 4){
-              choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 - 300, windowHeight/2 - 100, 50, 150, "charisma"))
-              choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 - 300, windowHeight/2 + 100, 50, 150, "flirt"))
-              choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 + 300, windowHeight/2 - 100, 50, 150, "inetelligence"))
-              choices.push(new MultipleDialogue("I have to get to work", windowWidth/2 + 300, windowHeight/2 + 100, 50, 150, "sass"))
+              choices.push(new MultipleDialogue("charisma", windowWidth/2 - 300, windowHeight/2 - 100, 50, 150, "charisma"))
+              choices.push(new MultipleDialogue("flirt", windowWidth/2 - 300, windowHeight/2 + 100, 50, 150, "flirt"))
+              choices.push(new MultipleDialogue("intellect", windowWidth/2 + 300, windowHeight/2 - 100, 50, 150, "intelligence"))
+              choices.push(new MultipleDialogue("sass", windowWidth/2 + 300, windowHeight/2 + 100, 50, 150, "sass"))
               
             }
             for(let i = 0; i < choices.length; i++){
               choices[i].draw()
               
             } 
+          
          
           }
           if(mouseIsPressed){
@@ -365,7 +384,7 @@ function firstScene(){
               choices[i].clickedOnOption();
             }
           }
-          
+         
         }
         
         displayText();
@@ -382,10 +401,10 @@ function firstScene(){
     }
     if (progress === 3){
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
-      // makeMap();
-      // if (!notWin){
-      //   progress = 4
-      // }
+      //  makeMap();
+      //  if (!notWin){
+      //    progress = 4
+      //  }
     }
     if (progress === 4){
       progress = 4
@@ -413,7 +432,7 @@ function changeDialogue(greater, less){
     allowDialogueChange = true;
     tempTextAllowX = greater;
     tempTextAllowY = less;
-    console.log("umm")
+    // console.log("umm")
 
   }
   else{

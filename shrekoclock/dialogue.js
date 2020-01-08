@@ -18,10 +18,20 @@ function dialogue(){
     dialogueOptions.push( new StoryText("*He helps you up, and gathers your papers...*", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
     dialogueOptions.push( new StoryText("Why are you in such a hurry?", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
-    dialogueOptions.push( new StoryText("oh no ive been defuckled", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("oh no", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText("WHAT ARE YE DOIN EN MA SWAMP!", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText("WHAT ARE YE DOIN EN MA SWAMP!", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
+    dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
+    dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
+    dialogueOptions.push( new StoryText("charisma", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("sass", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("intelligence", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("flirt", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("win", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("win again", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+
+
 }
