@@ -365,10 +365,10 @@ function firstScene(){
           if (moveDialogue === 8){
             allowDialogueChange = false;
             if (choices.length < 4){
-              choices.push(new MultipleDialogue("charisma", windowWidth/2 - 300, windowHeight/2 - 100, 50, 150, "charisma"))
-              choices.push(new MultipleDialogue("flirt", windowWidth/2 - 300, windowHeight/2 + 100, 50, 150, "flirt"))
-              choices.push(new MultipleDialogue("intellect", windowWidth/2 + 300, windowHeight/2 - 100, 50, 150, "intelligence"))
-              choices.push(new MultipleDialogue("sass", windowWidth/2 + 300, windowHeight/2 + 100, 50, 150, "sass"))
+              choices.push(new MultipleDialogue("Im not in a hurry, im in the office.", windowWidth/2 - 350, windowHeight/2 - 100, 100, 200, "charisma"))
+              choices.push(new MultipleDialogue("Couldn't bear not seeing you for ten less minutes in my day.", windowWidth/2 - 350, windowHeight/2 + 100, 100, 200, "flirt"))
+              choices.push(new MultipleDialogue("I'm going to be late", windowWidth/2 + 300, windowHeight/2 - 150, 100, 200, "intelligence"))
+              choices.push(new MultipleDialogue("That's none of your business.", windowWidth/2 + 300, windowHeight/2 + 150, 100, 200, "sass"))
               
             }
             for(let i = 0; i < choices.length; i++){

@@ -13,6 +13,7 @@ class StoryText {
     draw(){
       push();
       fill(255);
+      rectMode(CENTER)
       rect(this.xPos, this.yPos, this.w, this.h);
       fill(0);
       textSize(20); 
