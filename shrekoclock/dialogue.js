@@ -25,12 +25,11 @@ function dialogue(){
     dialogueOptions.push( new StoryText("WHAT ARE YE DOIN EN MA SWAMP!", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
-    dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText("charisma", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("sass", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("intelligence", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("flirt", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("win", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Oh really? Well what if you could see me for 10 more?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("win again", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
 
 

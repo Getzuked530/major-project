@@ -145,27 +145,28 @@ class MultipleDialogue {
     pop();
   }
   clickedOnOption(){
+    allowDialogueChange = false;
     console.log(mouseX, this.x, mouseY, this.y)
     if (mouseX >= this.x && mouseX <= this.x + this.w && mouseY >= this.y && mouseY <= this.y + this.h){
       console.log(this.type)
       if(this.type === "charisma"){
         allowDialogueChange = true
-        moveDialogue = 17
+        moveDialogue = 16
       }
       if(this.type === "sass"){
         allowDialogueChange = true
-        moveDialogue = 18
+        moveDialogue = 17
       }
       if(this.type === "intelligence"){
         allowDialogueChange = true
-        moveDialogue = 19
+        moveDialogue = 18
       }
       if(this.type === "flirt"){
         allowDialogueChange = true
-        moveDialogue = 20
+        moveDialogue = 19
       }
       dialoguePathCorrect = true;
-      
+      return true;
     }
   }
 }

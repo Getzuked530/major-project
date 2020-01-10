@@ -29,7 +29,7 @@ let stopTextDisplay = false;
 let bedroom;
 let thisIsBlank;
 let gateWay = false;
-let testerByPass = false;
+let testerByPass = true;
 let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
 let newMobsGoal = 0;
@@ -50,7 +50,7 @@ background(255)
 }
 
 
-function mousePressed(){
+function mouseClicked(){
   console.log(allowDialogueChange)
   
   if (mouseX >= windowWidth/2 - 250 && mouseX <= windowWidth/2 + 500 && mouseY <= windowHeight/1.5 + 75 && mouseY >= windowHeight/1.5 - 50){
@@ -60,15 +60,16 @@ function mousePressed(){
   else{
     clickedOnTextBox = false;
   }
-  if (allowDialogueChange === true && dialoguePathCorrect === true){
+  if (allowDialogueChange === true && moveDialogue >= 16 && moveDialogue < 20){
     allowDialogueChange = false;
-    moveDialogue = 20
+    moveDialogue = 19
+    
     
     
     console.log(moveDialogue)
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
-    dialoguePathCorrect = false
+    
     // if (continueWithScene && moveDialogue === tempTextAllowY){
     //   stopTextDisplay = true;
     // }
@@ -365,27 +366,54 @@ function firstScene(){
           if (moveDialogue === 8){
             allowDialogueChange = false;
             if (choices.length < 4){
-              choices.push(new MultipleDialogue("Im not in a hurry, im in the office.", windowWidth/2 - 350, windowHeight/2 - 100, 100, 200, "charisma"))
-              choices.push(new MultipleDialogue("Couldn't bear not seeing you for ten less minutes in my day.", windowWidth/2 - 350, windowHeight/2 + 100, 100, 200, "flirt"))
-              choices.push(new MultipleDialogue("I'm going to be late", windowWidth/2 + 300, windowHeight/2 - 150, 100, 200, "intelligence"))
-              choices.push(new MultipleDialogue("That's none of your business.", windowWidth/2 + 300, windowHeight/2 + 150, 100, 200, "sass"))
+              choices.push(new MultipleDialogue("Im not in a hurry, im in the office.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
+              choices.push(new MultipleDialogue("Couldn't bear not seeing you for ten less minutes in my day.", windowWidth/2 - 300, windowHeight/2 + 100, 100, 200, "flirt"))
+              choices.push(new MultipleDialogue("I'm going to be late", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "intelligence"))
+              choices.push(new MultipleDialogue("That's none of your business.", windowWidth/2 + 300, windowHeight/2 + 100, 100, 200, "sass"))
               
             }
+           
+            if (dialoguePathCorrect === true){
+              choices.slice(0, 3)
+              choices.push(new MultipleDialogue("That sounds nice.", windowWidth/2 - 350, windowHeight/2 - 100, 100, 200, "charisma"))
+              choices.push(new MultipleDialogue("Actually I dont really dig the green. Sorry.", windowWidth/2 - 350, windowHeight/2 + 100, 100, 200, "flirt"))
+            }
+       
             for(let i = 0; i < choices.length; i++){
               choices[i].draw()
               
             } 
-          
+         
          
           }
-          if(mouseIsPressed){
-           
-            for(let i = 0; i < choices.length; i++){
-              choices[i].clickedOnOption();
-            }
+          else{
+            dialoguePathCorrect = false;
           }
+          if (dialoguePathCorrect === true && moveDialogue === 21){
+            choices.splice(0, 3)
+            if (choices.length < 2){
+              choices.push(new MultipleDialogue("That sounds nice.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
+              choices.push(new MultipleDialogue("Actually I dont really dig the green. Sorry.", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "flirt"))
+              allowDialogueChange = true;
+            }
+              
+            for(let i = 0; i < choices.length; i++){
+              choices[i].draw()
+              
+            } 
+          }
+     
+          if(mouseIsPressed && allowDialogueChange === false){
+            for(let i = 0; i < choices.length; i++){
+              
+              choices[i].clickedOnOption();
+         
+            }
+    
          
         }
+
+      }
         
         displayText();
       }
@@ -400,7 +428,8 @@ function firstScene(){
       }
     }
     if (progress === 3){
-      image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+      image(frontDesk, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+
       //  makeMap();
       //  if (!notWin){
       //    progress = 4
