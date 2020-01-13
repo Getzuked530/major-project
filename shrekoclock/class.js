@@ -151,19 +151,19 @@ class MultipleDialogue {
       console.log(this.type)
       if(this.type === "charisma"){
         allowDialogueChange = true
-        moveDialogue = 16
+        moveDialogue = 17
       }
       if(this.type === "sass"){
         allowDialogueChange = true
-        moveDialogue = 17
+        moveDialogue = 18
       }
       if(this.type === "intelligence"){
         allowDialogueChange = true
-        moveDialogue = 18
+        moveDialogue = 19
       }
       if(this.type === "flirt"){
         allowDialogueChange = true
-        moveDialogue = 19
+        moveDialogue = 20
       }
       dialoguePathCorrect = true;
       return true;

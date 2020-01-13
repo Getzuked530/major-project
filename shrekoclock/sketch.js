@@ -60,9 +60,60 @@ function mouseClicked(){
   else{
     clickedOnTextBox = false;
   }
-  if (allowDialogueChange === true && moveDialogue >= 16 && moveDialogue < 20){
+  if (allowDialogueChange === true && moveDialogue === 20){
     allowDialogueChange = false;
-    moveDialogue = 19
+    moveDialogue = 20
+    
+    
+    
+    console.log(moveDialogue)
+    displayText();
+    changeDialogue(tempTextAllowX, tempTextAllowY);
+    
+    // if (continueWithScene && moveDialogue === tempTextAllowY){
+    //   stopTextDisplay = true;
+    // }
+
+  
+    
+  }
+  if (allowDialogueChange === true && moveDialogue === 19){
+    allowDialogueChange = false;
+    moveDialogue = 21
+    
+    
+    
+    console.log(moveDialogue)
+    displayText();
+    changeDialogue(tempTextAllowX, tempTextAllowY);
+    
+    // if (continueWithScene && moveDialogue === tempTextAllowY){
+    //   stopTextDisplay = true;
+    // }
+
+  
+    
+  }
+  if (allowDialogueChange === true && moveDialogue === 18){
+    allowDialogueChange = false;
+    moveDialogue = 21
+    
+    
+    
+    console.log(moveDialogue)
+    displayText();
+    changeDialogue(tempTextAllowX, tempTextAllowY);
+    
+    // if (continueWithScene && moveDialogue === tempTextAllowY){
+    //   stopTextDisplay = true;
+    // }
+
+  
+    
+  }
+  if (allowDialogueChange === true && moveDialogue === 17){
+    allowDialogueChange = false;
+    moveDialogue = 22
     
     
     
@@ -388,6 +439,9 @@ function firstScene(){
           }
           else{
             dialoguePathCorrect = false;
+          }
+          if (moveDialogue === 21){
+            dialoguePathCorrect = true;
           }
           if (dialoguePathCorrect === true && moveDialogue === 21){
             choices.splice(0, 3)
