@@ -17,6 +17,7 @@ function dialogue(){
     dialogueOptions.push( new StoryText("Oh sorry there ladie, let me help you with that", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
     dialogueOptions.push( new StoryText("*He helps you up, and gathers your papers...*", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
     dialogueOptions.push( new StoryText("Why are you in such a hurry?", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
+    //DO NOT TOUCH OR I WILL TOUCH YOU
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText("oh no", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
@@ -25,12 +26,20 @@ function dialogue(){
     dialogueOptions.push( new StoryText("WHAT ARE YE DOIN EN MA SWAMP!", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
+    //Ok you can touch now.
     dialogueOptions.push( new StoryText("charisma", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("sass", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("intelligence", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("flirt", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Oh really? Well what if you could see me for 10 more?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("win again", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Why be late when you could be with me?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("But anakin my allegiance is to the republic, to democracy.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Why be in the office when you could be out with me.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Ok tomorrow night, be there or be square.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Scene Two", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+
+    
+    
 
 
 }

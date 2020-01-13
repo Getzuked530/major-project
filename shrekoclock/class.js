@@ -151,19 +151,27 @@ class MultipleDialogue {
       console.log(this.type)
       if(this.type === "charisma"){
         allowDialogueChange = true
-        moveDialogue = 17
+        moveDialogue = jumpToCharisma;
       }
       if(this.type === "sass"){
         allowDialogueChange = true
-        moveDialogue = 18
+        moveDialogue = jumpToSass;
       }
       if(this.type === "intelligence"){
         allowDialogueChange = true
-        moveDialogue = 19
+        moveDialogue = jumpToIntelligence;
       }
       if(this.type === "flirt"){
         allowDialogueChange = true
-        moveDialogue = 20
+        moveDialogue = jumpToFlirt;
+      }
+      if(this.type === "yes"){
+        allowDialogueChange = true
+        moveDialogue =  25;
+      }
+      if(this.type === "no"){
+        allowDialogueChange = true
+        gameEnd = true;
       }
       dialoguePathCorrect = true;
       return true;

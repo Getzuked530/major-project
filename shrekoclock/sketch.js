@@ -37,6 +37,11 @@ let bugCoverUp = false;
 let frontDesk;
 let choices = [];
 let dialoguePathCorrect = false;
+let jumpToCharisma = 0;
+let jumpToFlirt = 0;
+let jumpToIntelligence = 0;
+let jumpToSass = 0;
+let gameEnd = false;
   
 function setup() {
   dialogue();
@@ -63,7 +68,7 @@ function mouseClicked(){
   if (allowDialogueChange === true && moveDialogue === 20){
     allowDialogueChange = false;
     moveDialogue = 20
-    
+    //flirt oh really ten more seconds
     
     
     console.log(moveDialogue)
@@ -80,7 +85,7 @@ function mouseClicked(){
   if (allowDialogueChange === true && moveDialogue === 19){
     allowDialogueChange = false;
     moveDialogue = 21
-    
+    //intel why be in a hurry be out with me
     
     
     console.log(moveDialogue)
@@ -96,8 +101,8 @@ function mouseClicked(){
   }
   if (allowDialogueChange === true && moveDialogue === 18){
     allowDialogueChange = false;
-    moveDialogue = 21
-    
+    moveDialogue = 22
+    // sass but anakin
     
     
     console.log(moveDialogue)
@@ -113,8 +118,8 @@ function mouseClicked(){
   }
   if (allowDialogueChange === true && moveDialogue === 17){
     allowDialogueChange = false;
-    moveDialogue = 22
-    
+    moveDialogue = 23
+    // char why be in the office
     
     
     console.log(moveDialogue)
@@ -213,44 +218,80 @@ function ui(){
   showingGame = false;
 }
 function draw() {
-
-  if (mobsMove){
-    for (let i = 0; i < enemies.length; i++){
-      if (bullets.length >= 1){
-        if(enemies[i].didHit(i)&& bullets.length >= 1){
-          score += 10
-          enemies.splice(i, 1);
+  if (gameEnd){ 
+    gameOverMan();
+  }
+  if(!gameEnd && progress < 3){
+    if (mobsMove){
+      for (let i = 0; i < enemies.length; i++){
+        if (bullets.length >= 1){
+          if(enemies[i].didHit(i)&& bullets.length >= 1){
+            score += 10
+            enemies.splice(i, 1);
+          }
         }
+        
       }
       
     }
-    
-  }
-  if (mobsMove){
-    for (let i = 0; i < enemies.length; i++){
-      enemies[i].moveMobs(i);
+    if (mobsMove){
+      for (let i = 0; i < enemies.length; i++){
+        enemies[i].moveMobs(i);
+        
+      }
+    }
+    if (miniGameDisplaying){
+      move();
+      spawnMobs()
       
     }
+    dialogueOptions[moveDialogue].blankText();
+    if (testerByPass){
+      firstScene();
+    }
+    //frameRate(1);
+    whichMenu();
+    if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false && needsToPlay === true){
+      image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
+      alreadyShown = true;
+      showWakeUp = true;
+      firstScene();
+    }
+    continueScene();
+    updateBullets();
+    //  if (progress === 3){
+    //    secondScene();
+    //  }
   }
-  if (miniGameDisplaying){
-    move();
-    spawnMobs()
-    
+  if (progress === 3 && !gameEnd){
+    secondScene();
+    if (mobsMove){
+      for (let i = 0; i < enemies.length; i++){
+        if (bullets.length >= 1){
+          if(enemies[i].didHit(i)&& bullets.length >= 1){
+            score += 10
+            enemies.splice(i, 1);
+          }
+        }
+        
+      }
+      
+    }
+    if (mobsMove){
+      for (let i = 0; i < enemies.length; i++){
+        enemies[i].moveMobs(i);
+        
+      }
+    }
+    if (miniGameDisplaying){
+      move();
+      spawnMobs()
+      
+    }
+    if (bullets.length > 0){
+      updateBullets();
+    }
   }
-  dialogueOptions[moveDialogue].blankText();
-  if (testerByPass){
-    firstScene();
-  }
-  //frameRate(1);
-  whichMenu();
-  if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false && needsToPlay === true){
-    image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
-    alreadyShown = true;
-    showWakeUp = true;
-    firstScene();
-  }
-  continueScene();
-  updateBullets();
   
 
   
@@ -407,7 +448,7 @@ function firstScene(){
       
       if (moveDialogue <= tempTextAllowY){
         continueWithScene = false;
-        changeDialogue(3, 23);
+        changeDialogue(3, 27);
         if (moveDialogue > 3){
 
           image(frontDesk, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
@@ -417,38 +458,36 @@ function firstScene(){
           if (moveDialogue === 8){
             allowDialogueChange = false;
             if (choices.length < 4){
+              jumpToCharisma = 17;
+              jumpToFlirt = 20;
+              jumpToIntelligence = 19;
+              jumpToSass = 18;
               choices.push(new MultipleDialogue("Im not in a hurry, im in the office.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
               choices.push(new MultipleDialogue("Couldn't bear not seeing you for ten less minutes in my day.", windowWidth/2 - 300, windowHeight/2 + 100, 100, 200, "flirt"))
               choices.push(new MultipleDialogue("I'm going to be late", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "intelligence"))
               choices.push(new MultipleDialogue("That's none of your business.", windowWidth/2 + 300, windowHeight/2 + 100, 100, 200, "sass"))
               
             }
-           
-            if (dialoguePathCorrect === true){
-              choices.slice(0, 3)
-              choices.push(new MultipleDialogue("That sounds nice.", windowWidth/2 - 350, windowHeight/2 - 100, 100, 200, "charisma"))
-              choices.push(new MultipleDialogue("Actually I dont really dig the green. Sorry.", windowWidth/2 - 350, windowHeight/2 + 100, 100, 200, "flirt"))
-            }
-       
+        
             for(let i = 0; i < choices.length; i++){
               choices[i].draw()
               
             } 
-         
+          
          
           }
           else{
             dialoguePathCorrect = false;
           }
-          if (moveDialogue === 21){
+          if (moveDialogue > 20){
             dialoguePathCorrect = true;
           }
-          if (dialoguePathCorrect === true && moveDialogue === 21){
+          if (dialoguePathCorrect === true && moveDialogue > 20 && moveDialogue < 25){
             choices.splice(0, 3)
             if (choices.length < 2){
-              choices.push(new MultipleDialogue("That sounds nice.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
-              choices.push(new MultipleDialogue("Actually I dont really dig the green. Sorry.", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "flirt"))
-              allowDialogueChange = true;
+              choices.push(new MultipleDialogue("That sounds nice.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "yes"))
+              choices.push(new MultipleDialogue("Actually I dont really dig the green. Sorry.", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "no"))
+              allowDialogueChange = false;
             }
               
             for(let i = 0; i < choices.length; i++){
@@ -465,40 +504,38 @@ function firstScene(){
             }
     
          
-        }
+          }
 
       }
         
         displayText();
       }
-      //console.log("happening")
-      if (continueWithScene === true){
-        if (progress <= 3){
 
-          progress = 3;
-        }
-        // storeItem("progress", progress)
-        
-      }
     }
-    if (progress === 3){
-      image(frontDesk, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+  if (moveDialogue === 25){
+    dialoguePathCorrect = false;
+  }
+  if (moveDialogue === 26){
+    progress = 3;
+  }
+}
+}
+function secondScene(){
+  if (progress === 3){
+    image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
-      //  makeMap();
-      //  if (!notWin){
-      //    progress = 4
-      //  }
-    }
-    if (progress === 4){
+    makeMap();
+    if (!notWin){
       progress = 4
-      progressUpdated = true;
-      
-      changeDialogue(10, 13);
-      displayText();
     }
   }
-
-
+  if (progress === 4){
+    progress = 4
+    progressUpdated = true;
+    
+    changeDialogue(10, 13);
+    displayText();
+  }
 }
 function continueScene(){
   
@@ -591,6 +628,18 @@ function charismaCheck() {
   if (charisma < 1){
     
   } 
+}
+function gameOverMan(){
+  progress = 5
+  console.log("game over man, game over")
+  image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+  background(0);
+  
+  textSize(50);
+  fill(255, 0, 0);
+  text("Game Over", windowWidth/2, windowHeight/2);
+  
+  
 }
 
 

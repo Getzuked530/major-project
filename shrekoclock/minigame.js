@@ -59,6 +59,7 @@ function move(){
 
 function faceMouse(){
     push()
+    rectMode(CENTER);
     translate(miniGameSpriteX, miniGameSpriteY);
     rotateAngle = atan2(mouseY - miniGameSpriteY, mouseX - miniGameSpriteX);
     rotate(rotateAngle)
@@ -94,6 +95,7 @@ function spawnMobs(){
     
 }
 function fire() {
+    
     let thisBullet = {
       x: miniGameSpriteX,
       y: miniGameSpriteY,
