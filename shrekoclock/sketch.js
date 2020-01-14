@@ -189,6 +189,9 @@ function keyPressed(){
       spawnMobs();
     
   }
+  if (keyCode === ESCAPE && menuState === "options"){
+    menuState = "startMenu"
+  }
 
 }
 
@@ -264,6 +267,9 @@ function draw() {
     //  }
   }
   if (progress === 3 && !gameEnd){
+    if (moveDialogue === 26){
+      dialoguePathCorrect = false;
+    }
     secondScene();
     if (mobsMove){
       for (let i = 0; i < enemies.length; i++){
@@ -521,7 +527,11 @@ function firstScene(){
 }
 }
 function secondScene(){
-  if (progress === 3){
+  dialoguePathCorrect = false;
+  image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+  changeDialogue(26, 30)
+  displayText();
+  if (progress === 4){
     image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
     makeMap();
@@ -529,13 +539,13 @@ function secondScene(){
       progress = 4
     }
   }
-  if (progress === 4){
-    progress = 4
-    progressUpdated = true;
+  // if (progress === 4){
+  //   progress = 4
+  //   progressUpdated = true;
     
-    changeDialogue(10, 13);
-    displayText();
-  }
+  //   changeDialogue(10, 13);
+  //   displayText();
+  // }
 }
 function continueScene(){
   
