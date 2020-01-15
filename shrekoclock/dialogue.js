@@ -1,9 +1,6 @@
 let dialogueOptions = [];
 let bottomBoxHeight = 1.19;
-let a;
-let b;
-let c;
-let d;
+
 
 
 function dialogue(){
@@ -37,8 +34,8 @@ function dialogue(){
     dialogueOptions.push( new StoryText("Why be in the office when you could be out with me.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Ok tomorrow night, be there or be square.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Scene Two", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("initiate date", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("continue date", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("*You arrive at the restaurant and wait patiently for your date to show up...*", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
 
 
     

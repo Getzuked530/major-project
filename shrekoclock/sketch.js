@@ -1,19 +1,13 @@
-let whatScene;
 let menuState = "startMenu";
 let noEscape = "Options? What options? You are playing a game desinged by me. What did you think you would find in here.";
 let normalShrek;
 let swampBack;
 let wakeUp;
 let showingGame = false;
-// let testAudio;
 let clickedOnTextBox = false;
 let yourName;
-let money;
 let moveDialogue = 0;
 let allowDialogueChange = false;
-let updateBg = false;
-let bkColor = "black";
-let showingIntro = false;
 let alarm;
 let alreadyShown = false;
 let tempTextAllowX;
@@ -23,9 +17,7 @@ let progress = 0;
 let needsToPlay = false;
 let alreadyPlayed = false;
 let showWakeUp = false;
-let notSaid = true;
 let progressUpdated = false;
-let stopTextDisplay = false;
 let bedroom;
 let thisIsBlank;
 let gateWay = false;
@@ -42,6 +34,7 @@ let jumpToFlirt = 0;
 let jumpToIntelligence = 0;
 let jumpToSass = 0;
 let gameEnd = false;
+
   
 function setup() {
   dialogue();
@@ -49,9 +42,6 @@ canvasWidth = windowWidth;
 canvasHeight = windowHeight;
 createCanvas(canvasWidth, canvasHeight)
 background(255)
-// if (getItem("progress") !== null){
-//   progress = getItem("progress")
-// }
 }
 
 
@@ -75,9 +65,6 @@ function mouseClicked(){
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
     
-    // if (continueWithScene && moveDialogue === tempTextAllowY){
-    //   stopTextDisplay = true;
-    // }
 
   
     
@@ -92,9 +79,6 @@ function mouseClicked(){
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
     
-    // if (continueWithScene && moveDialogue === tempTextAllowY){
-    //   stopTextDisplay = true;
-    // }
 
   
     
@@ -108,10 +92,7 @@ function mouseClicked(){
     console.log(moveDialogue)
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
-    
-    // if (continueWithScene && moveDialogue === tempTextAllowY){
-    //   stopTextDisplay = true;
-    // }
+
 
   
     
@@ -126,9 +107,7 @@ function mouseClicked(){
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
     
-    // if (continueWithScene && moveDialogue === tempTextAllowY){
-    //   stopTextDisplay = true;
-    // }
+
 
   
     
@@ -141,9 +120,6 @@ function mouseClicked(){
     console.log(moveDialogue)
     displayText();
     changeDialogue(tempTextAllowX, tempTextAllowY);
-    // if (continueWithScene && moveDialogue === tempTextAllowY){
-    //   stopTextDisplay = true;
-    // }
 
   
     
@@ -167,9 +143,9 @@ function keyTyped(){
 
 }
 function keyPressed(){
-  console.log("ppls")
+
   if (keyCode === BACKSPACE){
-    console.log("ehhhhhhh")
+
   }
   if (keyCode === BACKSPACE && clickedOnTextBox){
 
@@ -177,7 +153,7 @@ function keyPressed(){
   }
 
   if (keyCode === ENTER && clickedOnTextBox){
-    console.log("cont to game")
+
     menuState = "intro"
     clickedOnTextBox = false;
   }
@@ -192,6 +168,10 @@ function keyPressed(){
   if (keyCode === ESCAPE && menuState === "options"){
     menuState = "startMenu"
   }
+  if (keyCode === ESCAPE && progress === 5){
+    console.log("refresh")
+    location.reload();
+  }
 
 }
 
@@ -205,7 +185,6 @@ function preload(){
   normalShrek = loadImage("assets/shrek_PNG2.png")
   swampBack = loadImage("assets/phatswamp.jpg")
   wakeUp = loadImage("assets/wakeupscene.jpg")
-  // testAudio = loadSound("assets/sharpbreath.mp3");
   alarm = loadSound("assets/alarm.wav");
   bedroom = loadImage("assets/bedroom.jpg");
   frontDesk = loadImage("assets/frontdesk.jpg")
@@ -252,7 +231,7 @@ function draw() {
     if (testerByPass){
       firstScene();
     }
-    //frameRate(1);
+   ;
     whichMenu();
     if (!alarm.isPlaying() && menuState === "intro" && alreadyShown === false && needsToPlay === true){
       image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
@@ -262,9 +241,7 @@ function draw() {
     }
     continueScene();
     updateBullets();
-    //  if (progress === 3){
-    //    secondScene();
-    //  }
+
   }
   if (progress === 3 && !gameEnd){
     if (moveDialogue === 26){
@@ -312,9 +289,10 @@ function startMenu(){
   textAlign(CENTER, TOP)
   fill("white")
   stroke("black")
-  text("Welcome to the 9th Circle of Hell ", width/2, 100)
+  text("Shrekoclock", width/2, 100)
 
   //show start button
+ 
   rectMode(CENTER);
   fill(0, 255, 0, 125)
   rect(width/2, height/2 - 100, 400, 150);
@@ -323,6 +301,7 @@ function startMenu(){
   fill(0);
   text("Start Game", width/2, height/2 - 100);
   
+  
 
   //Show Options button
   fill(0, 255, 0, 125);
@@ -330,6 +309,25 @@ function startMenu(){
   fill(0);
   text("Options", width/2, height/2 + 100);
   
+  if (mouseX > width/2 - 200 && mouseX < width/2 + 200 &&
+    mouseY > height/2 - 100 - 75 && mouseY < height/2 - 100 +75 && menuState === "startMenu" ){
+   
+      rectMode(CENTER);
+      fill(255, 255, 0, 125)
+      rect(width/2, height/2 - 100, 400, 150);
+      textAlign(CENTER, CENTER);
+      textSize(50);
+      fill(0);
+      text("Start Game", width/2, height/2 - 100);
+  }
+  if (mouseX > width/2 - 200 && mouseX < width/2 + 200 &&
+    mouseY > height/2 + 100 - 75 && mouseY < height/2 + 100 + 75){
+      fill(255, 255, 0, 125);
+      rect(width/2, height/2 + 100, 400, 150);
+      fill(0);
+      text("Options", width/2, height/2 + 100);
+    }
+
 }
 
 function checkIfMenuButtonClicked(){
@@ -338,6 +336,8 @@ function checkIfMenuButtonClicked(){
     if (mouseX > width/2 - 200 && mouseX < width/2 + 200 &&
         mouseY > height/2 - 100 - 75 && mouseY < height/2 - 100 +75){
           menuState = "startGame";
+
+   
 
         }
 
@@ -368,6 +368,7 @@ function showOptions(){
 
   textAlign(CENTER);
   text("I can give you the option to leave if you want?", width/2, height/2 + 100)
+  text("ESC to go back", width/2, height/2 + 200)
 
 
 
@@ -389,25 +390,22 @@ function showGame(){
 }
 
 function showIntro(){
-  showingIntro = true;
   if (!progressUpdated){
     progressUpdated = true;
     progress = 1;
-    // storeItem("progress", progress);
+
   }
   if (progress === 1){
-    backgroundUpdate();
-    // background(0);
+
+
     textAlign(CENTER)
-    // dialogue();
-    // text("ok boomer", 500, 300)
+
     if (moveDialogue <= 0){
       allowDialogueChange = true;
     }
     else{
       allowDialogueChange = false;
     }
-    updateBg = true;
     needsToPlay = true;
     displayText();
     if (alreadyPlayed === false){
@@ -437,7 +435,7 @@ function firstScene(){
   if (!progressUpdated){
     progressUpdated = true;
     progress = 2
-    // storeItem("progress", progress)
+
   }
   if (progress >= 2){
 
@@ -447,7 +445,7 @@ function firstScene(){
     displayText();
     
     
-    // continueScene();
+
     if (continueWithScene || gateWay){
       gateWay = true;
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
@@ -468,7 +466,7 @@ function firstScene(){
               jumpToFlirt = 20;
               jumpToIntelligence = 19;
               jumpToSass = 18;
-              choices.push(new MultipleDialogue("Im not in a hurry, im in the office.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
+              choices.push(new MultipleDialogue("Im not in a hurry, im in an office.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
               choices.push(new MultipleDialogue("Couldn't bear not seeing you for ten less minutes in my day.", windowWidth/2 - 300, windowHeight/2 + 100, 100, 200, "flirt"))
               choices.push(new MultipleDialogue("I'm going to be late", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "intelligence"))
               choices.push(new MultipleDialogue("That's none of your business.", windowWidth/2 + 300, windowHeight/2 + 100, 100, 200, "sass"))
@@ -531,7 +529,7 @@ function secondScene(){
   image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
   changeDialogue(26, 30)
   displayText();
-  if (progress === 4){
+  if (progress === 3){
     image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
     makeMap();
@@ -539,13 +537,7 @@ function secondScene(){
       progress = 4
     }
   }
-  // if (progress === 4){
-  //   progress = 4
-  //   progressUpdated = true;
-    
-  //   changeDialogue(10, 13);
-  //   displayText();
-  // }
+
 }
 function continueScene(){
   
@@ -562,7 +554,7 @@ function changeDialogue(greater, less){
     allowDialogueChange = true;
     tempTextAllowX = greater;
     tempTextAllowY = less;
-    // console.log("umm")
+
 
   }
   else{
@@ -585,9 +577,7 @@ function displayText(){
 
     dialogueOptions[moveDialogue].draw();
   }
-  // else if(continueWithScene && mousePressed && moveDialogue === tempTextAllowY){
-  //   console.log("hello")
-  // }
+
 }
   
 
@@ -609,24 +599,11 @@ function whichMenu() {
   }
 
   else if (menuState ==="intro" ){
-    showingIntro = false;
+
      showIntro();
   }
 }
 
-function backgroundUpdate(){
-
-    if (menuState === "intro"){
-      background(0)
-      console.log("black")
-      updateBg = false;
-    }
-    if (showWakeUp){
-      image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
-    }
-    
-  
-}
 function charismaCheck() {
   
   if (charisma < 1){
@@ -648,45 +625,8 @@ function gameOverMan(){
   textSize(50);
   fill(255, 0, 0);
   text("Game Over", windowWidth/2, windowHeight/2);
-  
-  
 }
 
-
-
-
-// function keyPressed(){
-//   if(keyCode = 83){
-//     cookieSave();
-//   }
-//   if(keyCode = 72){
-//     cookieLoad();
-//   }
-// }
-// function cookieSave(){
-//   document.cookie = "menu=" + menuState + "; ya";
-// }
-// function cookieLoad(){
-//   document.cookie.split(";")
-// }
-
-// function setup() {
-//   createCanvas(100, 100, WEBGL);
-//   noStroke();
-// }
-// function draw() {
-//   background(0);
-//   let locX = mouseX - width / 2;
-//   let locY = mouseY - height / 2;
-//   translate(-25, 0, 0);
-//   lightFalloff(1, 0, 0);
-//   pointLight(250, 250, 250, locX, locY, 50);
-//   sphere(20);
-//   translate(50, 0, 0);
-//   lightFalloff(0.9, 0.01, 0);
-//   pointLight(250, 250, 250, locX, locY, 50);
-//   sphere(20);
-// }
 
 // CREEPY SHREKY FUN TIME SCENE
 // image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)

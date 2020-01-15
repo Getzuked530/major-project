@@ -78,7 +78,7 @@ class StoryText {
   draw(){
     for(let i = 0; i < enemies.length; i++){
       rect(enemies[i].mX, enemies[i].mY, enemies[i].mSize1, enemies[i].mSize2)
-      // console.log("enemy spawned")
+    
     }
   }
   didHit(enemy){
@@ -143,6 +143,20 @@ class MultipleDialogue {
     textSize(20);
     text(this.text, this.x, this.y, this.w, this.h)
     pop();
+    if (mouseX >= this.x && mouseX <= this.x + this.w && mouseY >= this.y && mouseY <= this.y + this.h){
+      push();
+      rectMode(CORNER)
+      fill("yellow")
+      rect(this.x, this.y, this.w, this.h);
+      pop();
+      push()
+      fill(0);
+      textSize(20);
+      text(this.text, this.x, this.y, this.w, this.h)
+      pop();
+
+      
+    }
   }
   clickedOnOption(){
     allowDialogueChange = false;
