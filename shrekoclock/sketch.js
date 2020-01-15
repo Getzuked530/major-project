@@ -144,8 +144,8 @@ function keyTyped(){
 }
 function keyPressed(){
 
-  if (keyCode === BACKSPACE){
-
+  if (keyCode === BACKSPACE && progress === 5){
+    location.reload();
   }
   if (keyCode === BACKSPACE && clickedOnTextBox){
 
@@ -167,11 +167,9 @@ function keyPressed(){
   }
   if (keyCode === ESCAPE && menuState === "options"){
     menuState = "startMenu"
+    
   }
-  if (keyCode === ESCAPE && progress === 5){
-    console.log("refresh")
-    location.reload();
-  }
+
 
 }
 
