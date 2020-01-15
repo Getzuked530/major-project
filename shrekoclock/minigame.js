@@ -11,7 +11,7 @@ let notWin = true;
 let neededScore = 100;
 function makeMap(){
     if (notDead && notWin){
-        //frameRate(10)
+
         push()
         rectMode(CORNER);
         miniGameDisplaying = true;
@@ -85,10 +85,7 @@ function spawnMobs(){
         mobsMove = true
         
     }
-    // if (millis() - 100 > newMobsGoal){
-    //     console.log("yes")
-    //     newMobsGoal = millis() + 100
-    // }
+
     
     
     
@@ -104,7 +101,6 @@ function fire() {
       speed: 1
     };
     bullets.push(thisBullet);
-    //spawnMobs();
     updateBullets();
   }
   function updateBullets() {
