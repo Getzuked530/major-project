@@ -34,10 +34,12 @@ let jumpToFlirt = 0;
 let jumpToIntelligence = 0;
 let jumpToSass = 0;
 let gameEnd = false;
-
+let diningRoom;
+let titanic;
+let standingShrek;
   
 function setup() {
-  dialogue();
+dialogue();
 canvasWidth = windowWidth;
 canvasHeight = windowHeight;
 createCanvas(canvasWidth, canvasHeight)
@@ -186,6 +188,9 @@ function preload(){
   alarm = loadSound("assets/alarm.wav");
   bedroom = loadImage("assets/bedroom.jpg");
   frontDesk = loadImage("assets/frontdesk.jpg")
+  diningRoom = loadImage("assets/diningroom.jpg")
+  titanic = loadImage("assets/Titanic.jpg")
+  standingShrek = loadImage("assets/standingshrek.png")
   
 }
 
@@ -524,11 +529,20 @@ function firstScene(){
 }
 function secondScene(){
   dialoguePathCorrect = false;
-  image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+  if (moveDialogue === 26){
+    image(titanic, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+  }
+  else{
+    image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+  }
+  if (moveDialogue === 28){
+    image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+    image(standingShrek, 500, windowHeight - 200, width/2, height/2)
+  }
   changeDialogue(26, 30)
   displayText();
-  if (progress === 3){
-    image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+  if (progress === 4){
+    image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
     makeMap();
     if (!notWin){
