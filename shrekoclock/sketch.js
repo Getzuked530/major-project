@@ -36,7 +36,7 @@ let jumpToSass = 0;
 let gameEnd = false;
 let diningRoom;
 let titanic;
-let standingShrek;
+// let standingShrek;
   
 function setup() {
 dialogue();
@@ -190,7 +190,7 @@ function preload(){
   frontDesk = loadImage("assets/frontdesk.jpg")
   diningRoom = loadImage("assets/diningroom.jpg")
   titanic = loadImage("assets/Titanic.jpg")
-  standingShrek = loadImage("assets/standingshrek.png")
+  // standingShrek = loadImage("assets/standingshrek.png")
   
 }
 
