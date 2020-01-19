@@ -539,7 +539,7 @@ function secondScene(){
   }
   if (moveDialogue >= 30){
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
-    image(standingShrek, 500, windowHeight - 200, width/2, height/2)
+    image(normalShrek, 500, windowHeight - 200, width/2, height/2)
   }
   
 
