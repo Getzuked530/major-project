@@ -29,13 +29,17 @@ let bugCoverUp = false;
 let frontDesk;
 let choices = [];
 let dialoguePathCorrect = false;
-let jumpToCharisma = 0;
-let jumpToFlirt = 0;
-let jumpToIntelligence = 0;
-let jumpToSass = 0;
+let jumpToCharisma = null;
+let jumpToFlirt = null;
+let jumpToIntelligence = null;
+let jumpToSass = null;
 let gameEnd = false;
 let diningRoom;
 let titanic;
+let charismaChosen = false;
+let intelligenceChosen = false;
+let flirtChosen = false;
+let sassChosen = false;
 // let standingShrek;
   
 function setup() {
@@ -59,7 +63,7 @@ function mouseClicked(){
   }
   if (allowDialogueChange === true && moveDialogue === 20){
     allowDialogueChange = false;
-    moveDialogue = 20
+    moveDialogue = jumpToFlirt
     //flirt oh really ten more seconds
     
     
@@ -71,7 +75,7 @@ function mouseClicked(){
   
     
   }
-  if (allowDialogueChange === true && moveDialogue === 19){
+  if (allowDialogueChange === true && moveDialogue === 17){
     allowDialogueChange = false;
     moveDialogue = 21
     //intel why be in a hurry be out with me
@@ -99,7 +103,7 @@ function mouseClicked(){
   
     
   }
-  if (allowDialogueChange === true && moveDialogue === 17){
+  if (allowDialogueChange === true && moveDialogue === 19){
     allowDialogueChange = false;
     moveDialogue = 23
     // char why be in the office
@@ -528,11 +532,19 @@ function firstScene(){
 }
 }
 function secondScene(){
-  changeDialogue(28, 33)
- 
-  dialoguePathCorrect = false;
+  
+  changeDialogue(28, 45)
+  if(changeDialogue <=31){
+  
+
+    dialoguePathCorrect = false;
+  }
   if (moveDialogue === 28){
     image(titanic, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+    charismaChosen = false
+    intelligenceChosen = false
+    flirtChosen = false;
+    sassChosen = false;
   }
   else{
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
@@ -543,11 +555,11 @@ function secondScene(){
   }
   
 
-  if (moveDialogue === 32){
-    jumpToCharisma = 33;
-    jumpToFlirt = 34;
-    jumpToIntelligence = 35;
-    jumpToSass = 36;
+  if (moveDialogue === 32 && !charismaChosen){
+    jumpToCharisma = 34;
+    jumpToFlirt = 35;
+    jumpToIntelligence = 36;
+    jumpToSass = 37;
     if (choices.length < 4){
       choices.splice(0, 2)
       choices.push(new MultipleDialogue("Thank Shrek for inviting you.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
@@ -569,7 +581,58 @@ function secondScene(){
 
    
     }
+
               
+  }
+  if (moveDialogue === jumpToCharisma){
+      allowDialogueChange === true;
+      moveDialogue = 34
+      console.log("yay")
+      dialoguePathCorrect = false;
+      if (moveDialogue === 35){
+
+        moveDialogue = 34
+      }
+     
+  }
+  if (charismaChosen){
+    if (moveDialogue === 35){
+
+      moveDialogue = 34
+    }
+  }
+  if (moveDialogue === jumpToFlirt){
+    allowDialogueChange === true;
+    moveDialogue = 36
+    dialoguePathCorrect = false;
+  }
+  if (flirtChosen){
+    if (moveDialogue === 37){
+
+      moveDialogue = 36
+    }
+  }
+  if (moveDialogue === jumpToIntelligence){
+    allowDialogueChange = true;
+    moveDialogue = 36;
+    dialoguePathCorrect = false;
+  }
+  if (intelligenceChosen){
+    if (moveDialogue === 36){
+
+      moveDialogue = 35
+    }
+  }
+  if (moveDialogue === jumpToSass){
+    allowDialogueChange = true;
+    moveDialogue = 37;
+    dialoguePathCorrect = false;
+  }
+  if (sassChosen){
+    if (moveDialogue === 38){
+
+      moveDialogue = 37
+    }
   }
 
 

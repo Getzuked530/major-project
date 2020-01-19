@@ -165,31 +165,37 @@ class MultipleDialogue {
     if (mouseX >= this.x && mouseX <= this.x + this.w && mouseY >= this.y && mouseY <= this.y + this.h){
       console.log(this.type)
       if(this.type === "charisma"){
-        allowDialogueChange = true
+        // allowDialogueChange = true
         moveDialogue = jumpToCharisma;
+        charismaChosen = true;
+        return "charisma";
       }
       if(this.type === "sass"){
-        allowDialogueChange = true
+        // allowDialogueChange = true
         moveDialogue = jumpToSass;
+        sassChosen = true;
       }
       if(this.type === "intelligence"){
-        allowDialogueChange = true
+        // allowDialogueChange = true
         moveDialogue = jumpToIntelligence;
+        intelligenceChosen = true;
       }
       if(this.type === "flirt"){
-        allowDialogueChange = true
+        // allowDialogueChange = true
         moveDialogue = jumpToFlirt;
+        flirtChosen = true;
       }
       if(this.type === "yes"){
-        allowDialogueChange = true
+        // allowDialogueChange = true
         moveDialogue =  25;
+    
       }
       if(this.type === "no"){
-        allowDialogueChange = true
+        // allowDialogueChange = true
         gameEnd = true;
       }
       dialoguePathCorrect = true;
-      return true;
+      // return true;
     }
   }
 }

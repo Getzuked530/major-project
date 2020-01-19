@@ -40,10 +40,16 @@ function dialogue(){
     dialogueOptions.push( new StoryText("So you made it did ya?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Well lets find a table.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("*You and Shrek find a table. He pulls a chair out for you and you take a seat...*", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("dont change steven", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("This is quite the place thank you for bringing me with you.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("Wow you look stunning.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+  
     dialogueOptions.push( new StoryText("Did you know that there are approximately half a million pieces of space junk in orbit around Earth", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Wow you look stunning.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Ill have you know I am a strong and independent individual and I dont need you pulling a chair out for me.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    
+    dialogueOptions.push( new StoryText("The Pleasure is mine", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Test", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+
 
 
     
