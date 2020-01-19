@@ -455,7 +455,7 @@ function firstScene(){
       
       if (moveDialogue <= tempTextAllowY){
         continueWithScene = false;
-        changeDialogue(3, 27);
+        changeDialogue(3, 28);
         if (moveDialogue > 3){
 
           image(frontDesk, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
@@ -473,7 +473,7 @@ function firstScene(){
               choices.push(new MultipleDialogue("Couldn't bear not seeing you for ten less minutes in my day.", windowWidth/2 - 300, windowHeight/2 + 100, 100, 200, "flirt"))
               choices.push(new MultipleDialogue("I'm going to be late", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "intelligence"))
               choices.push(new MultipleDialogue("That's none of your business.", windowWidth/2 + 300, windowHeight/2 + 100, 100, 200, "sass"))
-              
+              allowDialogueChange = false
             }
         
             for(let i = 0; i < choices.length; i++){
@@ -519,27 +519,60 @@ function firstScene(){
       }
 
     }
-  if (moveDialogue === 25){
+  if (moveDialogue >= 25){
     dialoguePathCorrect = false;
   }
-  if (moveDialogue === 26){
+  if (moveDialogue === 28){
     progress = 3;
   }
 }
 }
 function secondScene(){
+  changeDialogue(28, 33)
+ 
   dialoguePathCorrect = false;
-  if (moveDialogue === 26){
+  if (moveDialogue === 28){
     image(titanic, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
   }
   else{
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
   }
-  if (moveDialogue === 28){
+  if (moveDialogue >= 30){
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
     image(standingShrek, 500, windowHeight - 200, width/2, height/2)
   }
-  changeDialogue(26, 30)
+  
+
+  if (moveDialogue === 32){
+    jumpToCharisma = 33;
+    jumpToFlirt = 34;
+    jumpToIntelligence = 35;
+    jumpToSass = 36;
+    if (choices.length < 4){
+      choices.splice(0, 2)
+      choices.push(new MultipleDialogue("Thank Shrek for inviting you.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "charisma"))
+      choices.push(new MultipleDialogue("Compliment Shreks apearance.", windowWidth/2 - 300, windowHeight/2 + 100, 100, 200, "flirt"))
+      choices.push(new MultipleDialogue("Give Shrek a random statistic.", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "intelligence"))
+      choices.push(new MultipleDialogue("Inform him of your independence.", windowWidth/2 + 300, windowHeight/2 + 100, 100, 200, "sass"))
+      allowDialogueChange = false;
+    }
+    for (let i = 0; i < 4; i++){
+      choices[i].draw();
+    }
+         
+    if(mouseIsPressed && allowDialogueChange === false){
+      for(let i = 0; i < choices.length; i++){
+        
+        choices[i].clickedOnOption();
+   
+      }
+
+   
+    }
+              
+  }
+
+
   displayText();
   if (progress === 4){
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
@@ -584,9 +617,10 @@ function changeDialogue(greater, less){
 }
 
 function displayText(){
+ 
   dialogueOptions[moveDialogue].blankText();
-  if (!continueWithScene && !thisIsBlank){
-
+  if (!thisIsBlank){
+   
     dialogueOptions[moveDialogue].draw();
   }
 

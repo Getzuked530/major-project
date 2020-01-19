@@ -135,6 +135,7 @@ class MultipleDialogue {
     this.type = type;
   }
   draw(){
+    allowDialogueChange = false;
     push();
     rectMode(CORNER)
     rect(this.x, this.y, this.w, this.h);
