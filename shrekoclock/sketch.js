@@ -773,7 +773,7 @@ function secondScene(){
       branchingPathYes = 55;
       branchingPathNo = 57;
       likedAnswer = 54;
-      moveTo = 59;
+      moveTo = 58;
       useNow = null;
       choices.push(new MultipleDialogue("Let Shrek deal with it.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "no"))
       choices.push(new MultipleDialogue("Pay your portion of the bill.", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "yes"))
@@ -844,7 +844,7 @@ function secondScene(){
     }
    
   }
-  if (moveDialogue === 60){
+  if (moveDialogue === 61){
     allowDialogueChange = false;
     killDialogue = true;
     // progress = 4
@@ -852,7 +852,7 @@ function secondScene(){
 
 
   displayText();
-  if (moveDialogue === 60){
+  if (moveDialogue === 61){
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
     makeMap();

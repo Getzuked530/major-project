@@ -24,10 +24,10 @@ function dialogue(){
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     //Ok you can touch now.
-    dialogueOptions.push( new StoryText("charisma", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("sass", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("intelligence", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("flirt", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Im not in a hurry, im in an office.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("That's none of your business.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("I'm going to be late", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Couldn't bear not seeing you for ten less minutes in my day.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Oh really? Well what if you could see me for 10 more?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Why be late when you could be with me?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("But anakin my allegiance is to the republic, to democracy.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
@@ -62,17 +62,20 @@ function dialogue(){
     dialogueOptions.push( new StoryText("That was the best meal i've ever had.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Can we get our bill?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("*The waiter complies and hands shrek the bill...*", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("filler text", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("filler text again", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Woah there laddie 300 dollars for your meal alone.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Thats a lot on top of the ticket.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("useless", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("useless", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     
     dialogueOptions.push( new StoryText("You didnt have to do that you know.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     // dialogueOptions.push( new StoryText("useless", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    // dialogueOptions.push( new StoryText("useless", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    
+    
     dialogueOptions.push( new StoryText("Ok I guess i'll pay it all", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("filler text", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("filler text again", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("filler text again", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    // dialogueOptions.push( new StoryText("useless", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("That was one pricy meal wasnt it?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Why dont we see what other activities are on this ship", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("*you and shrek walk into the night in search of a good time.*", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("useless", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
 
 }
