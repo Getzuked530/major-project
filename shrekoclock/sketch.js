@@ -44,12 +44,20 @@ let branchingPathCharisma;
 let branchingPathIntelligence;
 let branchingPathFlirt;
 let branchingPathSass;
-// let standingShrek;
+let titanicSink;
 let pathCorrect = false
-let branchingPathYes;
-let branchingPathNo;
+let branchingPathYes = null;
+let branchingPathNo = null;
 let likeCount = 0;
-let likedAnswer;
+let likedAnswer = null;
+let alreadyCounted = false;
+let dateConcluded = false;
+let goToOtherThing = false;
+let moveTo = 0;
+let useNow = 0;
+let killDialogue = false;
+let goodEnding;
+
   
 function setup() {
   dialogue();
@@ -59,13 +67,32 @@ function setup() {
   background(255)
 }
 
-
+function test(){
+  console.log("yes")
+  
+}
+function mousePressed(){
+  console.log("mo" + goToOtherThing);
+  if(goToOtherThing === true){
+    moveDialogue = moveTo;
+    goToOtherThing = false;
+  }
+}
 function mouseClicked(){
   console.log(allowDialogueChange)
-  if (moveDialogue === branchingPathIntelligence || moveDialogue === branchingPathFlirt || moveDialogue === branchingPathCharisma || moveDialogue === branchingPathSass){
-    allowDialogueChange = true;
-    dialoguePathCorrect = false;
-    moveDialogue = 41
+  if ( moveDialogue > 30 && moveDialogue === branchingPathIntelligence || moveDialogue === branchingPathFlirt || moveDialogue === branchingPathCharisma || moveDialogue === branchingPathSass){
+    if (moveDialogue > 30){
+      allowDialogueChange = true;
+      dialoguePathCorrect = false;
+      moveDialogue = 41
+    }
+  }
+  if (branchingPathYes != 25 && moveDialogue === branchingPathYes|| moveDialogue === branchingPathNo ){
+    goToOtherThing = true
+      
+    
+      
+    
   }
   if (mouseX >= windowWidth/2 - 250 && mouseX <= windowWidth/2 + 500 && mouseY <= windowHeight/1.5 + 75 && mouseY >= windowHeight/1.5 - 50){
     clickedOnTextBox = true;
@@ -139,7 +166,7 @@ function mouseClicked(){
   else{
     pathCorrect = true;
   }
-  if (allowDialogueChange === true && dialoguePathCorrect === false){
+  if (allowDialogueChange === true && dialoguePathCorrect === false && killDialogue === false){
     console.log("you idiot")
     allowDialogueChange = false;
     moveDialogue += 1;
@@ -217,7 +244,7 @@ function preload(){
   frontDesk = loadImage("assets/frontdesk.jpg")
   diningRoom = loadImage("assets/diningroom.jpg")
   titanic = loadImage("assets/Titanic.jpg")
-  // standingShrek = loadImage("assets/standingshrek.png")
+  titanicSink = loadImage("assets/titanicSink.jpg")
   
 }
 
@@ -230,49 +257,39 @@ function ui(){
   showingGame = false;
 }
 function draw() {
-  if (moveDialogue === likedAnswer){
-    likedAnswer = 0;
-    likeCount += 1;
-    rect(0, 0, 200, 25);
-    text("Shrek liked that", 0, 0)
-  }
-  else{
-    likedAnswer = 0;
-    likeCount -= 1;
-    rect(0, 0, 200, 25);
-    text("Shrek did not like that", 0, 0)
-  }
+ 
   if (pathCorrect){
     allowDialogueChange = true;
+    pathCorrect = false;
 
   }
   if (gameEnd){ 
     gameOverMan();
   }
   if(!gameEnd && progress < 3){
-    if (mobsMove){
-      for (let i = 0; i < enemies.length; i++){
-        if (bullets.length >= 1){
-          if(enemies[i].didHit(i)&& bullets.length >= 1){
-            score += 10
-            enemies.splice(i, 1);
-          }
-        }
+    // if (mobsMove){
+    //   for (let i = 0; i < enemies.length; i++){
+    //     if (bullets.length >= 1){
+    //       if(enemies[i].didHit(i)&& bullets.length >= 1){
+    //         score += 10
+    //         enemies.splice(i, 1);
+    //       }
+    //     }
         
-      }
+    //   }
       
-    }
-    if (mobsMove){
-      for (let i = 0; i < enemies.length; i++){
-        enemies[i].moveMobs(i);
+    // }
+    // if (mobsMove){
+    //   for (let i = 0; i < enemies.length; i++){
+    //     enemies[i].moveMobs(i);
         
-      }
-    }
-    if (miniGameDisplaying){
-      move();
-      spawnMobs()
+    //   }
+    // }
+    // if (miniGameDisplaying){
+    //   move();
+    //   spawnMobs()
       
-    }
+    // }
     dialogueOptions[moveDialogue].blankText();
     if (testerByPass){
       firstScene();
@@ -322,19 +339,100 @@ function draw() {
       updateBullets();
     }
   }
-  if (moveDialogue === likedAnswer){
-    if (!already)
-    likeCount += 1;
-    rect(0, 0, 200, 25);
-    text("Shrek liked that", 0, 0)
+  if (progress === 4){
+    if (mobsMove){
+      for (let i = 0; i < enemies.length; i++){
+        if (bullets.length >= 1){
+          if(enemies[i].didHit(i)&& bullets.length >= 1){
+            score += 10
+            enemies.splice(i, 1);
+          }
+        }
+        
+      }
+      
+    }
+    if (mobsMove){
+      for (let i = 0; i < enemies.length; i++){
+        enemies[i].moveMobs(i);
+        
+      }
+    }
+    if (miniGameDisplaying){
+      move();
+      spawnMobs()
+      
+    }
+    if (bullets.length > 0){
+      updateBullets();
+    }
   }
-  else if (moveDialogue != likedAnswer && likedAnswer === null){
-    likedAnswer = null;
-    likeCount -= 1;
-    rect(0, 0, 200, 25);
-    text("Shrek did not like that", 0, 0)
+  if (progress === 4){
+    background(0);
+    endOfDate();
   }
+  if (moveDialogue === likedAnswer || moveDialogue === likedAnswer + 1 && likedAnswer != null){
+    if (!alreadyCounted){
+      alreadyCounted = true;
+      likeCount += 1;
+    }
+    push()
+    rectMode(CORNER)
+    rect(0, 0, 200, 25);
+    pop()
+    push()
+    textSize(20)
+    fill(0)
+    textAlign(CORNER)
+    text("Shrek liked that.", 80, 10)
+    pop()
+    dialoguePathCorrect = false;
+    pathCorrect = true;
+  }
+  if (moveDialogue === branchingPathYes + 1 && useNow === null){
+    push()
+    rectMode(CORNER)
+    rect(0, 0, 200, 25);
+    pop()
+    push()
+    textSize(20)
+    fill(0)
+    textAlign(CORNER)
+    text("Shrek liked that.", 80, 10)
+    pop()
   
+  }
+  if (moveDialogue > 40 && moveDialogue != likedAnswer && moveDialogue === branchingPathYes || moveDialogue === branchingPathNo){
+    if (alreadyCounted === false){
+      alreadyCounted = true;
+      likeCount -= 1;
+    }
+    
+    push()
+    rectMode(CORNER)
+    rect(0, 0, 200, 25);
+    pop()
+    push()
+    textSize(20)
+    fill(0)
+    textAlign(CORNER)
+    text("Shrek did not that.", 80, 10)
+    pop()
+    dialoguePathCorrect = false;
+    pathCorrect = true;
+  }
+  if (moveDialogue === branchingPathNo + 1 && branchingPathNo != null){
+        push()
+    rectMode(CORNER)
+    rect(0, 0, 200, 25);
+    pop()
+    push()
+    textSize(20)
+    fill(0)
+    textAlign(CORNER)
+    text("Shrek did not that.", 80, 10)
+    pop()
+  }
 
   
 }
@@ -590,7 +688,7 @@ function firstScene(){
 }
 function secondScene(){
   
-  changeDialogue(28, 45)
+  changeDialogue(28, 60)
   if(changeDialogue <=31){
   
 
@@ -648,14 +746,37 @@ function secondScene(){
               
   }
   if (moveDialogue === 42){
-    console.log("should work")
     choices.splice(0, 4)
     if (choices.length < 2){
       branchingPathYes = 43;
-      branchingPathNo = 44;
+      branchingPathNo = 45;
       likedAnswer = 43;
+      moveTo = 46;
       choices.push(new MultipleDialogue("Onions are my favourite of course I would.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "yes", true))
       choices.push(new MultipleDialogue("Ew no, Onions are gross", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "no", false))
+      allowDialogueChange = false;
+    }
+    for (let i = 0; i < 2; i++){
+      choices[i].draw();
+    }      
+    if(mouseIsPressed && allowDialogueChange === false){
+      for(let i = 0; i < choices.length; i++){
+        choices[i].clickedOnOption();
+      }
+    
+    }
+  }
+  if (moveDialogue === 53){
+    choices.splice(0, 2)
+    if (choices.length < 2){
+      alreadyCounted = false;
+      branchingPathYes = 55;
+      branchingPathNo = 57;
+      likedAnswer = 54;
+      moveTo = 59;
+      useNow = null;
+      choices.push(new MultipleDialogue("Let Shrek deal with it.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "no"))
+      choices.push(new MultipleDialogue("Pay your portion of the bill.", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "yes"))
       allowDialogueChange = false;
     }
     for (let i = 0; i < 2; i++){
@@ -723,16 +844,21 @@ function secondScene(){
     }
    
   }
+  if (moveDialogue === 60){
+    allowDialogueChange = false;
+    killDialogue = true;
+    // progress = 4
+  }
 
 
   displayText();
-  if (progress === 4){
+  if (moveDialogue === 60){
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
     makeMap();
-    if (!notWin){
-      progress = 4
-    }
+    // if (!notWin){
+    //   progress = 4
+    // }
   }
 
 }
@@ -823,6 +949,22 @@ function gameOverMan(){
   textSize(50);
   fill(255, 0, 0);
   text("Game Over", windowWidth/2, windowHeight/2);
+}
+ function endOfDate(){  
+  if (likeCount > 1){
+    goodEnding = true;     
+  }
+  if (likeCount < 1){
+    goodEnding = false;
+  }
+  if (goodEnding){
+    text("Hey there laddie I had a ogrefull time tonight", windowWidth/2, windowHeight/2)
+  }
+  if (!goodEnding){
+    image(titanicSink, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
+    text("You were so horrible the titanic sank again", windowWidth/2, windowHeight/2)
+    
+  }
 }
 
 

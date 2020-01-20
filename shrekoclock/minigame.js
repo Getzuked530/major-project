@@ -136,7 +136,9 @@ function isDead(){
             enemies.splice(j, 1)
         }
         console.log("lose")
+        location.reload();
     }
+    
 }
 function isWin(){
     if (score === neededScore){
@@ -150,7 +152,7 @@ function isWin(){
         for (let j = enemies.length; j >= 0; j--){
             enemies.splice(j, 1)
         }
-        console.log("win")
+        endOfDate();
         
 
     }
