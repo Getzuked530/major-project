@@ -160,6 +160,7 @@ class MultipleDialogue {
     }
   }
   clickedOnOption(){
+    moveDialogue - 1
     allowDialogueChange = false;
     console.log(mouseX, this.x, mouseY, this.y)
     if (mouseX >= this.x && mouseX <= this.x + this.w && mouseY >= this.y && mouseY <= this.y + this.h){
@@ -172,12 +173,12 @@ class MultipleDialogue {
       }
       if(this.type === "sass"){
         // allowDialogueChange = true
-        moveDialogue = jumpToSass;
+        moveDialogue = jumpToSass ;
         sassChosen = true;
       }
       if(this.type === "intelligence"){
         // allowDialogueChange = true
-        moveDialogue = jumpToIntelligence;
+        moveDialogue = jumpToIntelligence ;
         intelligenceChosen = true;
       }
       if(this.type === "flirt"){

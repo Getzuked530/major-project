@@ -40,20 +40,27 @@ let charismaChosen = false;
 let intelligenceChosen = false;
 let flirtChosen = false;
 let sassChosen = false;
+let branchingPathCharisma;
+let branchingPathIntelligence;
+let branchingPathFlirt;
+let branchingPathSass;
 // let standingShrek;
+let pathCorrect = false
   
 function setup() {
-dialogue();
-canvasWidth = windowWidth;
-canvasHeight = windowHeight;
-createCanvas(canvasWidth, canvasHeight)
-background(255)
+  dialogue();
+  canvasWidth = windowWidth;
+  canvasHeight = windowHeight;
+  createCanvas(canvasWidth, canvasHeight)
+  background(255)
 }
 
 
 function mouseClicked(){
   console.log(allowDialogueChange)
-  
+  if (moveDialogue === branchingPathIntelligence || moveDialogue === branchingPathFlirt || moveDialogue === branchingPathCharisma || moveDialogue === branchingPathSass){
+    moveDialogue = 42
+  }
   if (mouseX >= windowWidth/2 - 250 && mouseX <= windowWidth/2 + 500 && mouseY <= windowHeight/1.5 + 75 && mouseY >= windowHeight/1.5 - 50){
     clickedOnTextBox = true;
 
@@ -61,11 +68,12 @@ function mouseClicked(){
   else{
     clickedOnTextBox = false;
   }
-  if (allowDialogueChange === true && moveDialogue === 20){
+  if (allowDialogueChange === true && moveDialogue === jumpToFlirt){
+    pathCorrect = true;
     allowDialogueChange = false;
-    moveDialogue = jumpToFlirt
+    moveDialogue = branchingPathFlirt;
     //flirt oh really ten more seconds
-    
+ 
     
     console.log(moveDialogue)
     displayText();
@@ -75,9 +83,10 @@ function mouseClicked(){
   
     
   }
-  if (allowDialogueChange === true && moveDialogue === 17){
+  if (allowDialogueChange === true && moveDialogue === jumpToIntelligence){
     allowDialogueChange = false;
-    moveDialogue = 21
+    // pathCorrect = true;
+    moveDialogue = branchingPathIntelligence;
     //intel why be in a hurry be out with me
     
     
@@ -89,9 +98,10 @@ function mouseClicked(){
   
     
   }
-  if (allowDialogueChange === true && moveDialogue === 18){
+  if (allowDialogueChange === true && moveDialogue === jumpToSass){
     allowDialogueChange = false;
-    moveDialogue = 22
+    pathCorrect = true;
+    moveDialogue = branchingPathSass;
     // sass but anakin
     
     
@@ -103,9 +113,11 @@ function mouseClicked(){
   
     
   }
-  if (allowDialogueChange === true && moveDialogue === 19){
+  if (allowDialogueChange === true && moveDialogue === jumpToCharisma){
+    console.log("flase")
     allowDialogueChange = false;
-    moveDialogue = 23
+    pathCorrect = true;
+    moveDialogue = branchingPathCharisma;
     // char why be in the office
     
     
@@ -118,9 +130,14 @@ function mouseClicked(){
   
     
   }
+  else{
+    pathCorrect = true;
+  }
   if (allowDialogueChange === true && dialoguePathCorrect === false){
+    console.log("you idiot")
     allowDialogueChange = false;
     moveDialogue += 1;
+   
     
     
     console.log(moveDialogue)
@@ -207,6 +224,10 @@ function ui(){
   showingGame = false;
 }
 function draw() {
+  if (pathCorrect){
+    allowDialogueChange = true;
+
+  }
   if (gameEnd){ 
     gameOverMan();
   }
@@ -251,6 +272,7 @@ function draw() {
 
   }
   if (progress === 3 && !gameEnd){
+
     if (moveDialogue === 26){
       dialoguePathCorrect = false;
     }
@@ -469,6 +491,10 @@ function firstScene(){
           if (moveDialogue === 8){
             allowDialogueChange = false;
             if (choices.length < 4){
+              branchingPathFlirt = 20;
+              branchingPathIntelligence = 21
+              branchingPathSass = 22;
+              branchingPathCharisma = 23;
               jumpToCharisma = 17;
               jumpToFlirt = 20;
               jumpToIntelligence = 19;
@@ -556,6 +582,10 @@ function secondScene(){
   
 
   if (moveDialogue === 32 && !charismaChosen){
+    branchingPathCharisma = 38;
+    branchingPathSass = 39;
+    branchingPathFlirt = 41;
+    branchingPathIntelligence = 40;
     jumpToCharisma = 34;
     jumpToFlirt = 35;
     jumpToIntelligence = 36;
@@ -585,14 +615,15 @@ function secondScene(){
               
   }
   if (moveDialogue === jumpToCharisma){
-      allowDialogueChange === true;
+  //     allowDialogueChange = true;
       moveDialogue = 34
-      console.log("yay")
-      dialoguePathCorrect = false;
+    
+      // dialoguePathCorrect = false;
       if (moveDialogue === 35){
 
         moveDialogue = 34
       }
+      dialoguePathCorrect = true;
      
   }
   if (charismaChosen){
@@ -602,20 +633,23 @@ function secondScene(){
     }
   }
   if (moveDialogue === jumpToFlirt){
-    allowDialogueChange === true;
+    // allowDialogueChange = true;
     moveDialogue = 36
-    dialoguePathCorrect = false;
+    // dialoguePathCorrect = false;
+    dialoguePathCorrect = true;
   }
   if (flirtChosen){
     if (moveDialogue === 37){
 
       moveDialogue = 36
     }
+    
   }
   if (moveDialogue === jumpToIntelligence){
-    allowDialogueChange = true;
+    // allowDialogueChange = true;
     moveDialogue = 36;
-    dialoguePathCorrect = false;
+    // dialoguePathCorrect = false;
+    dialoguePathCorrect = true;
   }
   if (intelligenceChosen){
     if (moveDialogue === 36){
@@ -624,15 +658,17 @@ function secondScene(){
     }
   }
   if (moveDialogue === jumpToSass){
-    allowDialogueChange = true;
+    // allowDialogueChange = true;
     moveDialogue = 37;
-    dialoguePathCorrect = false;
+    dialoguePathCorrect = true;
+    // dialoguePathCorrect = false;
   }
   if (sassChosen){
     if (moveDialogue === 38){
 
       moveDialogue = 37
     }
+   
   }
 
 
@@ -658,7 +694,7 @@ function continueScene(){
   
 }
 function changeDialogue(greater, less){
-  if (moveDialogue >= greater && moveDialogue < less){
+  if (moveDialogue >= greater && moveDialogue < less && dialoguePathCorrect === false){
     allowDialogueChange = true;
     tempTextAllowX = greater;
     tempTextAllowY = less;

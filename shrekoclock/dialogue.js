@@ -14,7 +14,7 @@ function dialogue(){
     dialogueOptions.push( new StoryText("Oh sorry there ladie, let me help you with that", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
     dialogueOptions.push( new StoryText("*He helps you up, and gathers your papers...*", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
     dialogueOptions.push( new StoryText("Why are you in such a hurry?", windowWidth/2, windowHeight/bottomBoxHeight, 500, 100, false));
-    //DO NOT TOUCH OR I WILL TOUCH YOU
+    //DO NOT TOUCH
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
     dialogueOptions.push( new StoryText("oh no", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText(" ", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, true));
@@ -42,18 +42,13 @@ function dialogue(){
     dialogueOptions.push( new StoryText("*You and Shrek find a table. He pulls a chair out for you and you take a seat...*", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("dont change steven", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("This is quite the place thank you for bringing me with you.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-  
     dialogueOptions.push( new StoryText("Did you know that there are approximately half a million pieces of space junk in orbit around Earth", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Wow you look stunning.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Ill have you know I am a strong and independent individual and I dont need you pulling a chair out for me.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    
     dialogueOptions.push( new StoryText("The Pleasure is mine", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("Test", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-
-
-
-    
-    
-
+    dialogueOptions.push( new StoryText("Now you listen here.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Thank you. you look dasling yourself.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("I did not know that.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Test dialogue", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
 
 }
