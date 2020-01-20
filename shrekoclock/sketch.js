@@ -6,7 +6,7 @@ let swampBack;
 let wakeUp;
 let showingGame = false;
 let clickedOnTextBox = false;
-let yourName;
+let yourName = "text";
 let moveDialogue = 0;
 let allowDialogueChange = false;
 let alarm;
@@ -279,29 +279,7 @@ function draw() {
     gameOverMan();
   }
   if(!gameEnd && progress < 3){
-    // if (mobsMove){
-    //   for (let i = 0; i < enemies.length; i++){
-    //     if (bullets.length >= 1){
-    //       if(enemies[i].didHit(i)&& bullets.length >= 1){
-    //         score += 10
-    //         enemies.splice(i, 1);
-    //       }
-    //     }
-        
-    //   }
-      
-    // }
-    // if (mobsMove){
-    //   for (let i = 0; i < enemies.length; i++){
-    //     enemies[i].moveMobs(i);
-        
-    //   }
-    // }
-    // if (miniGameDisplaying){
-    //   move();
-    //   spawnMobs()
-      
-    // }
+
     dialogueOptions[moveDialogue].blankText();
     if (testerByPass){
       firstScene();
@@ -428,7 +406,7 @@ function draw() {
     textSize(20)
     fill(0)
     textAlign(CORNER)
-    text("Shrek did not that.", 80, 10)
+    text("Shrek did not like that.", 96, 10)
     pop()
     dialoguePathCorrect = false;
     pathCorrect = true;
@@ -442,7 +420,7 @@ function draw() {
     textSize(20)
     fill(0)
     textAlign(CORNER)
-    text("Shrek did not that.", 80, 10)
+    text("Shrek did not like that.", 96, 10)
     pop()
   }
 
@@ -519,18 +497,17 @@ function checkIfMenuButtonClicked(){
 }
 
 function showOptions(){
+  // displays options menu
   background("white")
 
   imageMode(CENTER)
   image(swampBack, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
-
 
   textAlign(CENTER);
   textSize(30);
   fill("white");
   stroke("black");
   text(noEscape, width/2, height/2 - 100);
-
 
   textAlign(CENTER);
   text("Like seriously what?", width/2, height/2)
@@ -545,10 +522,10 @@ function showOptions(){
 }
 
 function showGame(){
-  
+  // opens scene where you can give your character a name
   showingGame = true;
   background("green");
-
+  
   fill("white")
   text("What is your name? ", windowWidth/2, windowHeight/2);
   nameBox = new EnterText(windowWidth/2, windowHeight/1.5, 500, 50, 12);
@@ -560,6 +537,7 @@ function showGame(){
 }
 
 function showIntro(){
+  // shows the intro scene plays the alarm clock sound 
   dialoguePathCorrect = false
   background(0)
   if (!progressUpdated){
@@ -581,34 +559,37 @@ function showIntro(){
     needsToPlay = true;
     displayText();
     if (alreadyPlayed === false){
+      // refreshs dialogueOptions so your new name is included in the dialogue
+      dialogueOptions.splice(0, 63)
       alreadyPlayed = true;
+      dialogue();
       alarm.play();
     }
  
   }
+  //starts the first scene
   if (showWakeUp){
      firstScene();
    }
-  
-  
-  
-  
+
 }
 
-
 function firstScene(){
+  // fixes a bug in the dialogue
   if (!bugCoverUp){
     bugCoverUp = true;
     dialogueOptions.splice(1, 1)
   }
+  // allows progress to be updated
   if (progress === 1 || progress === 2 || progress === 3){
     progressUpdated = false;
   }
+  //updates progress
   if (!progressUpdated){
     progressUpdated = true;
     progress = 2
-
   }
+  // sets up the scene4 and plays the dialogue for the second progress point
   if (progress >= 2){
 
     image(wakeUp, windowWidth/2, windowHeight/2, windowWidth, windowHeight);
@@ -616,8 +597,7 @@ function firstScene(){
     changeDialogue(0, 3);
     displayText();
     
-    
-
+    //continues scene if needed
     if (continueWithScene || gateWay){
       gateWay = true;
       image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
@@ -631,6 +611,7 @@ function firstScene(){
           if (moveDialogue > 5){
             image(normalShrek, 500, windowHeight - 200, width/2, height/2)
           }
+          // while on the 8th piece of dialogue multiple options will be given for a reasponse
           if (moveDialogue === 8){
             allowDialogueChange = false;
             if (choices.length < 4){
@@ -648,13 +629,12 @@ function firstScene(){
               choices.push(new MultipleDialogue("That's none of your business.", windowWidth/2 + 300, windowHeight/2 + 100, 100, 200, "sass"))
               allowDialogueChange = false
             }
-        
+            // draws all present choices
             for(let i = 0; i < choices.length; i++){
               choices[i].draw()
-              
             } 
           
-         
+          
           }
           else{
             dialoguePathCorrect = false;
@@ -662,6 +642,7 @@ function firstScene(){
           if (moveDialogue > 20){
             dialoguePathCorrect = true;
           }
+          // removes oldd options and creates new ones
           if (dialoguePathCorrect === true && moveDialogue > 20 && moveDialogue < 25){
             choices.splice(0, 3)
             if (choices.length < 2){
@@ -676,39 +657,32 @@ function firstScene(){
               
             } 
           }
-     
+          // checks which option is picked
           if(mouseIsPressed && allowDialogueChange === false){
             for(let i = 0; i < choices.length; i++){
-              
-              choices[i].clickedOnOption();
-         
-            }
-    
-         
+              choices[i].clickedOnOption();        
+            }  
           }
-
       }
-        
         displayText();
       }
-
     }
   if (moveDialogue >= 25){
     dialoguePathCorrect = false;
   }
+  // calls the seecond scene when the first scene has concluded
   if (moveDialogue === 28){
     progress = 3;
   }
 }
 }
 function secondScene(){
-  
+  //initiates dialogue
   changeDialogue(28, 60)
   if(changeDialogue <=31){
-  
-
     dialoguePathCorrect = false;
   }
+  // displays transition picture
   if (moveDialogue === 28){
     image(titanic, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
     charismaChosen = false
@@ -719,12 +693,13 @@ function secondScene(){
   else{
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
   }
+  // displays scenes 2 back ground and character/s
   if (moveDialogue >= 30){
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
     image(normalShrek, 500, windowHeight - 200, width/2, height/2)
   }
   
-
+  // displays more dialogue options and removes the old ones
   if (moveDialogue === 32 && !charismaChosen){
     branchingPathCharisma = 38;
     branchingPathSass = 39;
@@ -748,18 +723,11 @@ function secondScene(){
          
     if(mouseIsPressed && allowDialogueChange === false){
       for(let i = 0; i < choices.length; i++){
-        
-        choices[i].clickedOnOption();
-   
+        choices[i].clickedOnOption();  
       }
-
-   
-    }
-   
-    
-
-              
+    }          
   }
+  // displays more dialogue options and removes old ones
   if (moveDialogue === 42){
     choices.splice(0, 4)
     if (choices.length < 2){
@@ -781,6 +749,7 @@ function secondScene(){
     
     }
   }
+  // displays more dialogue options and removes old ones
   if (moveDialogue === 53){
     choices.splice(0, 2)
     if (choices.length < 2){
@@ -803,17 +772,14 @@ function secondScene(){
       }
     }
   }
+  // finds where to jump to dialogue to depending on your answer
   if (moveDialogue === jumpToCharisma){
-  //     allowDialogueChange = true;
       moveDialogue = 34
-    
-      // dialoguePathCorrect = false;
       if (moveDialogue === 35){
 
         moveDialogue = 34
       }
       dialoguePathCorrect = true;
-     
   }
   if (charismaChosen){
     if (moveDialogue === 35){
@@ -822,51 +788,39 @@ function secondScene(){
     }
   }
   if (moveDialogue === jumpToFlirt){
-    // allowDialogueChange = true;
     moveDialogue = 36
-    // dialoguePathCorrect = false;
     dialoguePathCorrect = true;
   }
   if (flirtChosen){
     if (moveDialogue === 37){
-
       moveDialogue = 36
-    }
-    
+    }    
   }
   if (moveDialogue === jumpToIntelligence){
-    // allowDialogueChange = true;
     moveDialogue = 36;
-    // dialoguePathCorrect = false;
     dialoguePathCorrect = true;
   }
   if (intelligenceChosen){
     if (moveDialogue === 36){
-
       moveDialogue = 35
     }
   }
   if (moveDialogue === jumpToSass){
-    // allowDialogueChange = true;
     moveDialogue = 37;
     dialoguePathCorrect = true;
-    // dialoguePathCorrect = false;
   }
   if (sassChosen){
     if (moveDialogue === 38){
-
       moveDialogue = 37
-    }
-   
+    }  
   }
+  //kills dialogue once it is no longer used
   if (moveDialogue === 61){
     allowDialogueChange = false;
     killDialogue = true;
-    // progress = 4
   }
-
-
   displayText();
+  // displays the mini game and starts the mini game script
   if (moveDialogue === 61){
     image(diningRoom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
@@ -877,16 +831,16 @@ function secondScene(){
   }
 
 }
+
 function continueScene(){
   
     if(moveDialogue === tempTextAllowY){
       
       return continueWithScene = true;
     }
-   
-  
-  
+
 }
+// chooses which dialogue to allow to be displayed in the current scene
 function changeDialogue(greater, less){
   if (moveDialogue >= greater && moveDialogue < less && dialoguePathCorrect === false){
     allowDialogueChange = true;
@@ -895,6 +849,7 @@ function changeDialogue(greater, less){
 
 
   }
+  // checks for a blank string to allow for no text being displayed
   else{
     dialogueOptions[moveDialogue].blankText();
     if (thisIsBlank){
@@ -908,18 +863,16 @@ function changeDialogue(greater, less){
     }
   }
 }
-
+// displays the text to the screen
 function displayText(){
  
   dialogueOptions[moveDialogue].blankText();
+  // does not display if string is blank
   if (!thisIsBlank){
-   
     dialogueOptions[moveDialogue].draw();
   }
-
-}
-  
-
+}  
+// finds which menu to display
 function whichMenu() {
   if (menuState === "startMenu"){
     startMenu();
@@ -942,19 +895,7 @@ function whichMenu() {
      showIntro();
   }
 }
-
-function charismaCheck() {
-  
-  if (charisma < 1){
-    
-  } 
-  if (charisma < 1){
-    
-  } 
-  if (charisma < 1){
-    
-  } 
-}
+// ends game if chosen to deny date
 function gameOverMan(){
   progress = 5
   console.log("game over man, game over")
@@ -965,6 +906,7 @@ function gameOverMan(){
   fill(255, 0, 0);
   text("Game Over", windowWidth/2, windowHeight/2);
 }
+//concludes date and decides which ending to give you based on your decisions
  function endOfDate(){  
   if (likeCount > 1){
     goodEnding = true;     
@@ -977,20 +919,8 @@ function gameOverMan(){
   }
   if (!goodEnding){
     image(titanicSink, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
-    text("You were so horrible the titanic sank again", windowWidth/2, windowHeight/2)
-    
+    text("You were so horrible the titanic sank again", windowWidth/2, windowHeight/2)  
   }
 }
 
 
-// CREEPY SHREKY FUN TIME SCENE
-// image(bedroom, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
-// image(normalShrek, 500, windowHeight - 200, width/2, height/2)
-
-// reset minigame
-// notDead = true;
-// playerHealth = 100
-
-
-// wake up, get ready, go to work, at work bump into shrek knock papers out of hands,
-// shrek helps you up, and helps gather papers, go on date with shrek, charisma checks, if failed bad date, if succeed go to minigame, if minigame fail, ok date, if minigame win good date.

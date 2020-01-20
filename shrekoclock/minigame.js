@@ -1,3 +1,4 @@
+// variables for mini game
 let miniGameDisplaying = false
 let rotateAngle;
 let mobsMove = false;
@@ -9,6 +10,7 @@ let playerHealth = 100;
 let notDead = true;
 let notWin = true;
 let neededScore = 100;
+// creates the map and tells instructions for mini game
 function makeMap(){
     if (notDead && notWin){
 
@@ -19,6 +21,7 @@ function makeMap(){
         pop()
         
         faceMouse();
+        // calls function to display enemies
         if (enemiesDisplaying === true){
             for (let i = 0; i < enemies.length; i++){
     
@@ -31,9 +34,11 @@ function makeMap(){
         pop()
         isDead();
         isWin();
+        text("WASD to move, Click to shoot, Press C to start the game", windowWidth/2, windowHeight/2 + 200)
     }
     
 }
+// moves your character
 function move(){
  
     if (keyIsDown(68) && miniGameSpriteX <= width/1.5){
@@ -55,8 +60,8 @@ function move(){
     if (miniGameSpriteX >= width/1.5){
         console.log("greater")
     }
-    }
-
+}
+// makes your character face towards the mouse, based off of class demo code
 function faceMouse(){
     push()
     rectMode(CENTER);
@@ -71,6 +76,7 @@ function attack(){
     spawnMobs();
     
 }
+// spawns mobs every second
 function spawnMobs(){
     console.log("spawn")
     
@@ -91,6 +97,7 @@ function spawnMobs(){
     
     
 }
+// shoots a bullet toward the mouse based off of class demo code
 function fire() {
     
     let thisBullet = {
@@ -103,6 +110,7 @@ function fire() {
     bullets.push(thisBullet);
     updateBullets();
   }
+  // updates bullets location, based off of class demo code
   function updateBullets() {
     for (let i = bullets.length - 1; i >= 0; i--) {
       if (bullets[i].x < 0 || bullets[i].x > width/1.5 ||
@@ -123,7 +131,7 @@ function fire() {
     }
   }
 
-
+// checks if the player is dead, refreshs the page if is dead
 function isDead(){
     if (playerHealth <= 0){
         notDead = false;
@@ -140,6 +148,7 @@ function isDead(){
     }
     
 }
+// checks if youve one ends the date if won to decide on the ending you get
 function isWin(){
     if (score === neededScore){
         progress = 4
@@ -153,7 +162,5 @@ function isWin(){
             enemies.splice(j, 1)
         }
         endOfDate();
-        
-
     }
 }

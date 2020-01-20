@@ -1,3 +1,4 @@
+// class for dialogue in the game 
 class StoryText {
     constructor(text1, xpos1, ypos1, w1, h1, blank){
       this.text = text1;
@@ -21,6 +22,7 @@ class StoryText {
       pop();
       
     }
+    // checks if the dialoguye is blank
     blankText(){
       if(dialogueOptions[moveDialogue].isBlank === true){
         return thisIsBlank = true;
@@ -31,6 +33,7 @@ class StoryText {
 
     }
   }
+  // class for entering you name into the custom text box
   class EnterText {
     constructor(x1, y1, w1, h1, maxLimit1){
       this.x = x1;
@@ -50,6 +53,7 @@ class StoryText {
       text(this.textData, this.x, this.y)
       pop()
     }
+    // adds letters to string inputText = last key you typed
     inputTextName(inputText){
       if (this.textData.length < this.maxLimit){  
        
@@ -57,15 +61,18 @@ class StoryText {
         
         
         nameBox.draw();
+        // your final name
         yourName = this.textData;
+        console.log(yourName)
       }
     }
+    // deletes letters from the string
     deleteText(){
       this.textData = this.textData.slice(0, -1);
       nameBox.draw();
     }
   }
-
+  // class for the mobs of the mini game
   class Mobs {
     constructor(mobX1, mobY1, healthVal, size1, size2, speed,  ){
     this.mX = mobX1;
@@ -81,6 +88,7 @@ class StoryText {
     
     }
   }
+  // checks if the enemy was hit and should die
   didHit(enemy){
     for (let i = 0; i <bullets.length; i++){
       if (bullets[i].x + bullets[i].radius/2 > enemies[enemy].mX - 10 && bullets[i].x + bullets[i].radius/2 < enemies[enemy].mX + 10 + enemies[enemy].mSize1 && bullets[i].y + bullets[i].radius/2 > enemies[enemy].mY - 10 && bullets[i].y + bullets[i].radius/2 < enemies[enemy].mY + 10 + enemies[enemy].mSize2){
@@ -90,6 +98,7 @@ class StoryText {
       }
     }
   }
+  // moves the mobs towards your position based on their speed
   moveMobs(mob){
     
       if (enemies[mob].mX < miniGameSpriteX){
@@ -115,6 +124,7 @@ class StoryText {
         enemies[mob].mY -= enemies[mob].speedy
        
       } 
+      // if player is touched by a mob it subtracts their health and kills the mob
       if(enemies[mob].mX + 10 > miniGameSpriteX && enemies[mob].mY - 10 < miniGameSpriteY && enemies[mob].mX - 10 < miniGameSpriteX && enemies[mob].mY +10 > miniGameSpriteY){
           enemies.splice(mob, 1)
           playerHealth -= 10
@@ -124,7 +134,7 @@ class StoryText {
     
   }
 }
-
+// class for multiple dialogue options
 class MultipleDialogue {
   constructor(text, x, y, height, width, type){
     this.text = text;
@@ -145,6 +155,7 @@ class MultipleDialogue {
     textSize(20);
     text(this.text, this.x, this.y, this.w, this.h)
     pop();
+    // changes color of options when mouse is over it
     if (mouseX >= this.x && mouseX <= this.x + this.w && mouseY >= this.y && mouseY <= this.y + this.h){
       push();
       rectMode(CORNER)
@@ -160,6 +171,7 @@ class MultipleDialogue {
       
     }
   }
+  // checks which option is clicked on
   clickedOnOption(){
     moveDialogue - 1
     allowDialogueChange = false;
@@ -167,33 +179,27 @@ class MultipleDialogue {
     if (mouseX >= this.x && mouseX <= this.x + this.w && mouseY >= this.y && mouseY <= this.y + this.h){
       console.log(this.type)
       if(this.type === "charisma"){
-        // allowDialogueChange = true
         moveDialogue = jumpToCharisma;
         charismaChosen = true;
         return "charisma";
       }
       if(this.type === "sass"){
-        // allowDialogueChange = true
         moveDialogue = jumpToSass ;
         sassChosen = true;
       }
       if(this.type === "intelligence"){
-        // allowDialogueChange = true
         moveDialogue = jumpToIntelligence ;
         intelligenceChosen = true;
       }
       if(this.type === "flirt"){
-        // allowDialogueChange = true
         moveDialogue = jumpToFlirt;
         flirtChosen = true;
       }
       if(this.type === "yes"){
-        // allowDialogueChange = true
         moveDialogue =  branchingPathYes;
     
       }
       if(this.type === "no"){
-        // allowDialogueChange = true
         if (moveDialogue < 30){
           gameEnd = true;
         }
@@ -203,7 +209,6 @@ class MultipleDialogue {
         }
       }
       dialoguePathCorrect = true;
-
     }
   }
 }
