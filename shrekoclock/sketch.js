@@ -46,6 +46,10 @@ let branchingPathFlirt;
 let branchingPathSass;
 // let standingShrek;
 let pathCorrect = false
+let branchingPathYes;
+let branchingPathNo;
+let likeCount = 0;
+let likedAnswer;
   
 function setup() {
   dialogue();
@@ -59,7 +63,9 @@ function setup() {
 function mouseClicked(){
   console.log(allowDialogueChange)
   if (moveDialogue === branchingPathIntelligence || moveDialogue === branchingPathFlirt || moveDialogue === branchingPathCharisma || moveDialogue === branchingPathSass){
-    moveDialogue = 42
+    allowDialogueChange = true;
+    dialoguePathCorrect = false;
+    moveDialogue = 41
   }
   if (mouseX >= windowWidth/2 - 250 && mouseX <= windowWidth/2 + 500 && mouseY <= windowHeight/1.5 + 75 && mouseY >= windowHeight/1.5 - 50){
     clickedOnTextBox = true;
@@ -224,6 +230,18 @@ function ui(){
   showingGame = false;
 }
 function draw() {
+  if (moveDialogue === likedAnswer){
+    likedAnswer = 0;
+    likeCount += 1;
+    rect(0, 0, 200, 25);
+    text("Shrek liked that", 0, 0)
+  }
+  else{
+    likedAnswer = 0;
+    likeCount -= 1;
+    rect(0, 0, 200, 25);
+    text("Shrek did not like that", 0, 0)
+  }
   if (pathCorrect){
     allowDialogueChange = true;
 
@@ -303,6 +321,18 @@ function draw() {
     if (bullets.length > 0){
       updateBullets();
     }
+  }
+  if (moveDialogue === likedAnswer){
+    if (!already)
+    likeCount += 1;
+    rect(0, 0, 200, 25);
+    text("Shrek liked that", 0, 0)
+  }
+  else if (moveDialogue != likedAnswer && likedAnswer === null){
+    likedAnswer = null;
+    likeCount -= 1;
+    rect(0, 0, 200, 25);
+    text("Shrek did not like that", 0, 0)
   }
   
 
@@ -522,6 +552,7 @@ function firstScene(){
           if (dialoguePathCorrect === true && moveDialogue > 20 && moveDialogue < 25){
             choices.splice(0, 3)
             if (choices.length < 2){
+              branchingPathYes = 25;
               choices.push(new MultipleDialogue("That sounds nice.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "yes"))
               choices.push(new MultipleDialogue("Actually I dont really dig the green. Sorry.", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "no"))
               allowDialogueChange = false;
@@ -611,8 +642,30 @@ function secondScene(){
 
    
     }
+   
+    
 
               
+  }
+  if (moveDialogue === 42){
+    console.log("should work")
+    choices.splice(0, 4)
+    if (choices.length < 2){
+      branchingPathYes = 43;
+      branchingPathNo = 44;
+      likedAnswer = 43;
+      choices.push(new MultipleDialogue("Onions are my favourite of course I would.", windowWidth/2 - 300, windowHeight/2 - 100, 100, 200, "yes", true))
+      choices.push(new MultipleDialogue("Ew no, Onions are gross", windowWidth/2 + 300, windowHeight/2 - 100, 100, 200, "no", false))
+      allowDialogueChange = false;
+    }
+    for (let i = 0; i < 2; i++){
+      choices[i].draw();
+    }      
+    if(mouseIsPressed && allowDialogueChange === false){
+      for(let i = 0; i < choices.length; i++){
+        choices[i].clickedOnOption();
+      }
+    }
   }
   if (moveDialogue === jumpToCharisma){
   //     allowDialogueChange = true;

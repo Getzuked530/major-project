@@ -126,13 +126,14 @@ class StoryText {
 }
 
 class MultipleDialogue {
-  constructor(text, x, y, height, width, type){
+  constructor(text, x, y, height, width, type, likeness){
     this.text = text;
     this.x = x;
     this.y = y;
     this.w = width;
     this.h = height;
     this.type = type;
+    this.like = likeness;
   }
   draw(){
     allowDialogueChange = false;
@@ -188,13 +189,28 @@ class MultipleDialogue {
       }
       if(this.type === "yes"){
         // allowDialogueChange = true
-        moveDialogue =  25;
+        moveDialogue =  branchingPathYes;
     
       }
       if(this.type === "no"){
         // allowDialogueChange = true
-        gameEnd = true;
+        if (moveDialogue < 30){
+          gameEnd = true;
+        }
+        else{
+          moveDialogue = branchingPathNo;
+          
+        }
       }
+      // if (this.like === true){
+      //   console.log("like")
+      //   answerLiked = true;
+      //   likeCount += 1;
+      //   if (moveDialogue === 43){
+      //     rect(0, 0, 200, 25);
+      //     text("Shrek liked that", 0, 0)
+      //   }
+      // }
       dialoguePathCorrect = true;
       // return true;
     }

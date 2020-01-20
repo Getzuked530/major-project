@@ -49,6 +49,9 @@ function dialogue(){
     dialogueOptions.push( new StoryText("Now you listen here.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("Thank you. you look dasling yourself.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
     dialogueOptions.push( new StoryText("I did not know that.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
-    dialogueOptions.push( new StoryText("Test dialogue", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Now if i handed an onion to you right now would ya eat it?", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Woah me too.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    dialogueOptions.push( new StoryText("Excuse me.", windowWidth/2, windowHeight/bottomBoxHeight, 500 , 100, false));
+    
 
 }
