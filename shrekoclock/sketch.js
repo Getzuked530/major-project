@@ -21,7 +21,7 @@ let progressUpdated = false;
 let bedroom;
 let thisIsBlank;
 let gateWay = false;
-let testerByPass = true;
+let testerByPass = false;
 let miniGameSpriteX = 500;
 let miniGameSpriteY = 500;
 let newMobsGoal = 0;
