@@ -1,3 +1,4 @@
+// variables for game
 let menuState = "startMenu";
 let noEscape = "Options? What options? You are playing a game desinged by me. What did you think you would find in here.";
 let normalShrek;
@@ -58,7 +59,7 @@ let useNow = 0;
 let killDialogue = false;
 let goodEnding;
 
-  
+// set up scene
 function setup() {
   dialogue();
   canvasWidth = windowWidth;
@@ -66,11 +67,12 @@ function setup() {
   createCanvas(canvasWidth, canvasHeight)
   background(255)
 }
-
+// old test
 function test(){
   console.log("yes")
   
 }
+// check if mouse pressed and then move dialogue to what moveTo is set to
 function mousePressed(){
   console.log("mo" + goToOtherThing);
   if(goToOtherThing === true){
@@ -78,8 +80,10 @@ function mousePressed(){
     goToOtherThing = false;
   }
 }
+// check if mouse is clicked
 function mouseClicked(){
   console.log(allowDialogueChange)
+  // return to a linear path after a branching path
   if ( moveDialogue > 30 && moveDialogue === branchingPathIntelligence || moveDialogue === branchingPathFlirt || moveDialogue === branchingPathCharisma || moveDialogue === branchingPathSass){
     if (moveDialogue > 30){
       allowDialogueChange = true;
@@ -94,6 +98,7 @@ function mouseClicked(){
       
     
   }
+  // figure out whether to allow you to type your name or not
   if (mouseX >= windowWidth/2 - 250 && mouseX <= windowWidth/2 + 500 && mouseY <= windowHeight/1.5 + 75 && mouseY >= windowHeight/1.5 - 50){
     clickedOnTextBox = true;
 
@@ -101,6 +106,7 @@ function mouseClicked(){
   else{
     clickedOnTextBox = false;
   }
+  // change dialogue during branching paths
   if (allowDialogueChange === true && moveDialogue === jumpToFlirt){
     pathCorrect = true;
     allowDialogueChange = false;
@@ -166,6 +172,7 @@ function mouseClicked(){
   else{
     pathCorrect = true;
   }
+  // change linear dialogue 
   if (allowDialogueChange === true && dialoguePathCorrect === false && killDialogue === false){
     console.log("you idiot")
     allowDialogueChange = false;
@@ -190,6 +197,7 @@ function mouseClicked(){
     fire();
   }
 }
+// allow you to type your name
 function keyTyped(){
   if (clickedOnTextBox && menuState === "startGame"){
     nameBox.inputTextName(key);
@@ -198,22 +206,24 @@ function keyTyped(){
 
 
 }
-function keyPressed(){
 
+function keyPressed(){
+  // refresh after game over
   if (keyCode === BACKSPACE && progress === 5){
     location.reload();
   }
+  // delete text for your name
   if (keyCode === BACKSPACE && clickedOnTextBox){
 
     nameBox.deleteText();
   }
-
+  //confirm your name
   if (keyCode === ENTER && clickedOnTextBox){
 
     menuState = "intro"
     clickedOnTextBox = false;
   }
-
+  // spawn enemies in mini game
   if (key === "c"){
     newMobsGoal = millis() + 1000;
    
@@ -221,6 +231,7 @@ function keyPressed(){
       spawnMobs();
     
   }
+  // back out of the options menu
   if (keyCode === ESCAPE && menuState === "options"){
     menuState = "startMenu"
     
@@ -234,7 +245,7 @@ function keyPressed(){
 
 
 
-
+// loads images and sounds
 function preload(){
   normalShrek = loadImage("assets/shrek_PNG2.png")
   swampBack = loadImage("assets/phatswamp.jpg")
@@ -247,17 +258,18 @@ function preload(){
   titanicSink = loadImage("assets/titanicSink.jpg")
   
 }
-
+// resize window if changed mid game
 function windowResized(){
   ui();
 }
+// creates the ui for the game
 function ui(){
   createCanvas(windowWidth, windowHeight);
   textSize(50);
   showingGame = false;
 }
 function draw() {
- 
+ // move multiple paths back to a linear system
   if (pathCorrect){
     allowDialogueChange = true;
     pathCorrect = false;

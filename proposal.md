@@ -4,16 +4,16 @@
 Shrek Dating Simulator
 
 ## Need To Have List
-- ability to date Shrek
+//- ability to date Shrek
 //- puzzle game involved
-- multiple dialogue paths
+//- multiple dialogue paths
 - currency system
-- travel system
+//- travel system
 //- multiple backgrounds/envviroments
-- affection gauge
+//- affection gauge
 //- main menu
-- music/sound effects
-- time system
+//- music/sound effects
+//- time system
 
 ## Nice To Have List
 - voice overs
