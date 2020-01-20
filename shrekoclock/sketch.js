@@ -541,12 +541,15 @@ function showGame(){
   text("What is your name? ", windowWidth/2, windowHeight/2);
   nameBox = new EnterText(windowWidth/2, windowHeight/1.5, 500, 50, 12);
   nameBox.draw();
+  dialoguePathCorrect = true;
   
   
 
 }
 
 function showIntro(){
+  dialoguePathCorrect = false
+  background(0)
   if (!progressUpdated){
     progressUpdated = true;
     progress = 1;
