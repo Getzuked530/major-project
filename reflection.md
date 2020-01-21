@@ -8,3 +8,7 @@
 
 ## Needs to have/wants
 - we almost completed all our needs to have. there was one idea that we ditched and some ideas that we downgraded due to lack of time.
+## Beta tester feedback
+- include instructions for minigame (implemented)
+- implement your name into the games dialogue (implemented)
+- the thought of dating shrek is appalling (will not be implemented)
